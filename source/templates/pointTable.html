@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <div class="ScheduleDiv">
+    <h3>
+	{{ title }}
+  </h3>
+      <div class="filterDiv">
+
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+    <p> {{ form.levelFilter_feild.label }} {{ form.levelFilter_feild }} &nbsp AND &nbsp
+        {{ form.divisionFilter_feild.label }} {{ form.divisionFilter_feild }}  &nbsp &nbsp
+        {% for error in form.levelFilter_feild.label.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+         {% for error in form.divisionFilter_feild.label.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+        {{ form.submit() }}</p>
+
+    </form>
+
+
+    </div>
+
+
+    <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data %}
+               <tr>
+                  <td>{{ entry.player_id }}</td>
+                  <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#D7763C">{{ entry.points }}</td>
+                  <td bgcolor="#ACD086">{{ entry.xrating }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+
+
+
+      </div>
+
+
+
+
+
+{% endblock %}

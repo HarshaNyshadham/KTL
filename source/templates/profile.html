@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+  <div class="ScheduleDiv">
+    <h3>
+      {{current_user.firstName}}
+    </h3>
+    <ul class="profile">
+      <li>First Name: {{current_user.firstName}}</li>
+      <li>Last Name: {{current_user.lastName}}</li>
+      <li>Email : {{current_user.email}}</li>
+      <li>Phone : {{current_user.phone}}</li>
+    </ul>
+
+
+
+  </div>
+
+
+
+
+
+{% endblock %}

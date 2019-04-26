@@ -1,0 +1,85 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <div class="ScheduleDiv">
+
+    <h3>
+	<p class="scheduleTitle">{{ title }}</p>
+<!--   <p class="enterScore"> <a href="{{ url_for('enterScore') }}">Enter Score</a></p> -->
+
+  </h3>
+  <div class="filterDiv">
+
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+    <p> {{ form.playerFilter_feild.label }} {{ form.playerFilter_feild }} &nbsp OR &nbsp
+        {{ form.deadlineFilter_feild.label }} {{ form.deadlineFilter_feild }}  &nbsp &nbsp
+
+
+        {{ form.submit() }}</p>
+
+    </form>
+
+
+    </div>
+
+        <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="color:red;font-weight:bold">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+
+
+
+
+    <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Home</th>
+               <th>Away</th>
+               <th>Deadline</th>
+               <th >Score</th>
+               <th>Division</th>
+               <th>Level</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data %}
+               <tr>
+                  <td>{{ entry.player_id1 }}</td>
+                  <td>{{ entry.player_id2 }}</td>
+                  <td>{{ entry.deadline }}</td>
+                 {% if entry.score or entry.player_id1=='Bye' or entry.player_id2=='Bye' %}
+                  <td id="scoreText">{{ entry.score }}</td>
+                 {% else %}
+                  <td><a href="{{ url_for('enterScore', player1=entry.player_id1,player2=entry.player_id2,
+                    id=entry.id) }}"
+                         >Enter Score</a></td>
+                 {% endif %}
+                  <td>{{ entry.division }}</td>
+                  <td>{{ entry.level }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+
+
+
+      </div>
+
+
+
+
+
+{% endblock %}

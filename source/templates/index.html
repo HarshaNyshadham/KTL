@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title id="title">KTL</title>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1990 12:00:00 GMT" />
+<link rel="stylesheet" href="/static/css/template.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <h2>
+      <a href = "{{ url_for('index') }}">Katy Tennis League</a>
+
+    <ul class="login">
+      {% if current_user.is_authenticated %}
+      <li> <a href="">{{current_user.username}} <i class="glyphicon glyphicon-user"></i></a></li>
+      {% endif %}
+      {% if current_user.is_anonymous %}
+      <li> <a href="{{ url_for('login') }}">Login</a></li>
+      {% else %}
+      <li> <a href="{{ url_for('logout') }}">Logout</a></li>
+      {% endif %}
+      <li> <a href="{{ url_for('register') }}">Register</a></li>
+    </ul>
+  </h2>
+  </div>
+  <div class="nav-menu">
+    <ul class="nav-list">
+       <li class="listHome"> <a href="{{ url_for('index') }}">Home</a></li>
+       <li> <a href="{{ url_for('schedule') }}">Schedule</a></li>
+       <li> <a href="{{ url_for('players') }}">Players</a></li>
+       <li> <a href="{{ url_for('PointTable') }}">Point Table</a></li>
+       <li> <a href="#">About</a></li>
+
+       <li>
+          <div class="dropdown">
+          <button class="dropbtn">Season</button>
+          <div class="dropdown-content">
+                <a href="#">Spring 2019</a>
+                <a href="#">Summer 2019</a>
+                <a href="#">Fall 2019</a>
+          </div>
+          </div>
+
+
+      </li>
+      {% if current_user.is_authenticated and current_user.username=="admin" %}
+      <li> <a href="{{ url_for('upload') }}">Admin</a></li>
+      {% endif %}
+    </ul>
+
+  </div>
+
+</header>
+{% block content %}{% endblock %}
+
+</body>
+</html>
+

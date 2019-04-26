@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <div class="ScheduleDiv">
+    <h3>
+	{{ title }}
+  </h3>
+    <table class="dataframe">
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>Username</th>
+               <th>Player ID</th>
+               <th>Lastname</th>
+               <th>Email</th>
+               <th>Phone</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data %}
+               <tr>
+                  <td>{{ entry.id }}</td>
+                  <td>{{ entry.username }}</td>
+                  <td>{{ entry.firstName }}</td>
+                  <td>{{ entry.lastName }}</td>
+                  <td>{{ entry.email }}</td>
+                  <td>{{ entry.phone }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+
+
+
+      </div>
+
+
+
+
+
+{% endblock %}

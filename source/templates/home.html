@@ -1,0 +1,91 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+  <div class="ScheduleDiv">
+
+    {% if current_user.is_anonymous %}
+    <p style="font-size=20px">Welcome Guest, Please login to view data.</p>
+    {% else %}
+    <p class="homePlayerName">{{ data.firstName }}
+
+    <svg class="levelSVG" xmlns="http://www.w3.org/2000/svg">
+    <g>
+    <rect ></rect>
+    <text x="100" y="30">Level 4.5</text>
+    </g>
+    </svg>
+    </p>
+     <br>
+
+
+
+
+
+    <div class="WinPercentage">
+    <h5>Win Percentage</h5>
+
+    <svg height="100" width="100">
+    <circle  stroke-dasharray="600"/>
+    <text x="90" y="130">80%</text>
+    </svg>
+     <div id="svgSide">
+     <p> Matches Played - 10 </p><br>
+     <p> Total Win - 10 </p><br>
+     <p> Total Loss - 10 </p>
+      </div>
+    </div>
+
+    <div class="WinPercentage">
+    <h5>Game Percentage</h5>
+
+    <svg height="100" width="100">
+    <circle  stroke-dasharray="600"/>
+    <text x="90" y="130">80%</text>
+    </svg>
+     <div id="svgSide">
+     <p> Total Games Played - 10 </p><br>
+     <p> Total Win - 10 </p><br>
+     <p> Total Loss - 10 </p>
+      </div>
+      <div id="svgBottom">
+          <svg height="100" width="100">
+    <circle  stroke-dasharray="200"/>
+    <text x="30" y="70">Set1-60%</text>
+    </svg>
+
+        <svg height="100" width="100">
+    <circle  stroke-dasharray="100"/>
+    <text x="30" y="70">Set2-50%</text>
+    </svg>
+
+        <svg height="100" width="100">
+    <circle  stroke-dasharray="50"/>
+    <text x="30" y="70">Set3-30%</text>
+    </svg>
+
+      </div>
+
+    </div>
+
+    <div class="playerUpcoming">
+    <h5>{{ data.username }} upcoming matches</h5>
+    </div>
+
+    <div class="playerRecent">
+    <h5>{{ data.username }} recent results </h5>
+    </div>
+    {% endif %}
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,443 @@
+*
+{
+
+  margin:0;
+  padding:0;
+
+}
+
+html
+{
+
+}
+
+
+
+body {
+  background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/static/img/background.jpg');
+  width:100%;
+
+  background-size:100%;
+
+}
+
+.top{
+
+  color:white;
+  width:100%;
+
+  margin:0;
+  padding:1%;
+
+  background-color:black;
+
+}
+.top h2{
+  margin-left:3%;
+  font-family:"Verdana";
+  font-size:25px;
+
+}
+.top h2 a{
+  color:white;
+  text-decoration:none;
+}
+
+.login{
+
+    color:white;
+    float:right;
+    size:5px;
+}
+.login li{
+  display: inline-block;
+
+    }
+.login li a{
+  color:white;
+  text-decoration:none;
+  padding:5px 20px;
+  font-family:"Verdana";
+  font-size:15px;
+  margin-right:10PX;
+    }
+
+
+.nav-menu{
+    width:100%;
+    background-color:white;
+    float:center;
+    list-style:none;
+    padding:10px;
+
+
+
+}
+.nav-menu li{
+  display: inline-block;
+    }
+.nav-menu li a{
+  color:#D7763C;
+  text-decoration:none;
+  padding:10px 60px;
+  font-family:"Verdana";
+  font-size:15px;
+    }
+
+/*season lisr drop down*/
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 32px 40px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.login a:hover {background-color: #ddd;}
+
+.nav-menu a:hover {background-color: #ddd;}
+
+
+
+.ScheduleDiv {
+  background-color: white;
+  color: black;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  border-style: solid;
+  opacity: 0.8;
+}
+
+.ScheduleDiv h3{
+/*   background-color:blue; */
+  margin-left:auto;
+  margin-right:auto;
+  border:solid;
+  text-align:center;
+
+
+}
+
+.ScheduleDiv h1{
+/* background-color:blue; */
+
+}
+
+.scoreDiv{
+  margin-left:auto;
+  margin-right:auto;
+  border:solid;
+  width:500px;
+  align:center;
+}
+
+
+
+.scoreName{
+font-size:20px;
+}
+
+
+#setstext{
+
+  background-color: #D7763C;
+  color:black;
+  margin-left:65%;
+  opacity: 1.0;
+  width:150px;
+  border:none;
+
+}
+
+#scoresumbit{
+  padding:1%;
+  color:black;
+}
+
+#scoreText{
+  color:red;
+
+}
+
+
+
+.enterScore {
+
+background-color: #D7763C;
+color:white;
+font-size:15px;
+/* float:right; */
+margin-top:1%;
+margin-right:1%;
+padding:1%;
+text-decoration:none;
+display:inline-block
+
+}
+
+.enterScore a{color:white;}
+
+.scheduleTitle{
+  padding-right:5%;
+  padding-left:5%;
+  display:inline-block
+
+}
+
+.filterDiv{
+ border:solid;
+ backgroud-color:green;
+ padding:none;
+
+}
+
+.filterDiv p{
+ font-size:15px;
+ margin-top:none;
+ margin-bottom:none;
+ padding:none;
+}
+
+.ScheduleDiv form,h1{
+ text-align:center;
+  padding:3%
+
+}
+
+.AboutDiv {
+  background-color: white;
+  color: black;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  border-style: solid;
+  opacity: 0.7;
+}
+
+.AboutDiv h3{
+  backgroud-color:blue;
+  margin-left:auto;
+  margin-right:auto;
+  border:solid;
+  text-align:center;
+
+
+}
+
+.AboutDiv p{
+ color:red;
+text-align:center;
+}
+
+
+/* dataframe for schedule page*/
+table.dataframe, .dataframe th, .dataframe td {
+
+  border: none;
+  border-bottom: 1px solid #C8C8C8;
+  border-collapse: collapse;
+  text-align:center;
+  padding: 5px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 15px;
+  align:center;
+
+}
+
+.dataframe th{
+  background-color: #77dd77;
+    color: black;
+
+}
+
+.dataframe td{
+  width:10%;
+
+}
+
+.dataframe td a{
+  background-color: #77dd77;
+  opacity:1.0;
+  padding: 6px 10px;
+  color: black;
+
+}
+
+#xrating{
+  bgcolor:#FF0000;
+}
+
+tr:hover            { background-color: #ffff99;}
+.dataframe td a:hover     { background-color: red;}
+.manageContent p:hover     { background-color: red;}
+/* score botton */
+.score-button {
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity:1.0;
+
+
+}
+
+.addPlayer{
+ border:solid;
+margin-top:1%;
+}
+
+.manageContent{
+border:solid;
+  margin-top:1%;
+}
+
+.createSeason{
+border:solid;
+text-align:left;
+}
+
+.levelSVG{
+  float:right;
+  padding:none;
+
+
+}
+
+.levelSVG text{
+
+ font-size:20px;
+  fill:black;
+  font-family="Verdana";
+
+
+}
+
+.levelSVG rect{
+
+   width:300px;
+  height:40px;
+  fill:#D7763C;
+  stroke-width:5;
+  stroke:rgb(0,0,0);
+}
+
+.ScheduleDiv .homePlayerName{
+font-size:35px;
+margin-top:5%;
+
+  margin-left:10%;
+  margin-right:10%;
+text-align:left;
+
+
+}
+
+.WinPercentage{
+  border:solid;
+/*   width:90%;
+  height:100%; */
+  margin-top:10%;
+
+
+
+}
+
+.WinPercentage h5{
+ margin-left:10%;
+  margin-right:50%;
+/*  border:solid; */
+  width:25%;
+  text-align:center;
+  font-size:15px;
+}
+
+
+
+.WinPercentage svg{
+ margin-left:10%;
+   height:25%;
+    width:25%;
+/*  border:solid; */
+}
+
+.WinPercentage circle{
+  cx:50%;
+  cy:50%;
+  r:45%;
+ stroke:#D7763C;
+ stroke-width:8;
+ fill:#77dd77;
+/*  stroke-dasharray:600; */
+
+}
+.WinPercentage text{
+
+  font-size:25px;
+}
+#svgSide{
+  margin-right:20%;
+  font-size:20px;
+  float:right;
+  padding:0%;
+/*   border:solid; */
+  width:30%;
+  margin-top:3%;
+  text-align:center;
+}
+
+.WinPercentage #svgBottom  svg{
+ margin-left:10%;
+   height:15%;
+    width:15%;
+/*   border:solid; */
+}
+
+
+.WinPercentage #svgBottom circle{
+  cx:50%;
+  cy:50%;
+  r:45%;
+ stroke:#D7763C;
+ stroke-width:8;
+ fill:#77dd77;
+/*  stroke-dasharray:600; */
+}
+
+.WinPercentage #svgBottom text{
+  x:40%;
+  y:40%;
+  font-size:15px;
+}

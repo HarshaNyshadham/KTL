@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="ScheduleDiv" >
+<body>
+  <div class="createSeason">
+    <h4> Create Season   </h4>
+    <form method="post" enctype="multipart/form-data">
+    <h6 style="margin-left:1%;"> Select an excel file to create new season      </h6>
+    <p>
+    {{ form.hidden_tag() }}
+    {{ form.file }}
+    {% for error in form.file.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}<br>
+    {{form.seasonName.label}}
+    {{form.seasonName(size=64)}}<br>
+    <input type="submit">
+    </p>
+    </form>
+  </div>
+
+  <div class="manageContent">
+    <h4> Manage content </h4>
+    <p class="enterScore">
+    <a href="/admin/user">Manage Users</a>
+    </p>
+    <p class="enterScore">
+    <a href="{{ url_for('deleteDB') }}">Clear Schedule</a>
+    </p>
+  </div>
+
+  <div class="addPlayer">
+    <h4>Create new Player ID</h1>
+    <form action="" method="post">
+        {{ form1.hidden_tag() }}
+      <p>
+            {{ form1.playername.label }}
+            {{ form1.playername(size=64) }}<br>
+            {% for error in form1.playername.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+      <p>{{ form1.submit() }}</p>
+    </form>
+  </div>
+
+</body>
+</div>
+{% endblock %}

@@ -31,9 +31,7 @@ def login():
         if userLogged is None or not userLogged.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        elif form.password.data=="test":
-          flash("Please Register")
-          return redirect(url_for('register'))
+
         login_user(userLogged, remember=form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
@@ -75,6 +73,7 @@ def profile():
 def schedule():
 
     if not current_user.is_authenticated:
+        flash('Please login to view data')
         return redirect(url_for('login'))
 
     form=FilterForm()
@@ -104,6 +103,11 @@ def players():
 
 @app.route('/PointTable',methods=['GET', 'POST'])
 def PointTable():
+
+    if not current_user.is_authenticated:
+      flash('Please login to view data')
+      return redirect(url_for('login'))
+
     form=PointTableForm()
     form.divisionFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in score.query.with_entities(score.division).distinct()]
     form.levelFilter_feild.choices=[('','')]+[(str(u[0]),str(u[0])) for u in score.query.with_entities(score.level).distinct()]

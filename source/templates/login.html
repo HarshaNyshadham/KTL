@@ -3,6 +3,21 @@
 {% block content %}
   <div class="ScheduleDiv">
     <h1>Sign In</h1>
+
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul style="text-align:center;color:red;">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+
+
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
@@ -22,17 +37,9 @@
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
-    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+    <p><b>New User? <a href="{{ url_for('register') }}">Click to Register!</a></b></p>
     <hr>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
+
 
 
 </div>

@@ -26,7 +26,7 @@ body {
   color:white;
   width:100%;
 
-  margin:0;
+  margin:0%;
   padding:1%;
 
   background-color:black;
@@ -35,19 +35,21 @@ body {
 .top h2{
   margin-left:3%;
   font-family:"Verdana";
-  font-size:25px;
+  font-size:150%;
+
 
 }
 .top h2 a{
   color:white;
   text-decoration:none;
+
 }
 
 .login{
 
     color:white;
     float:right;
-    size:5px;
+    size:50%;
 }
 .login li{
   display: inline-block;
@@ -58,8 +60,8 @@ body {
   text-decoration:none;
   padding:5px 20px;
   font-family:"Verdana";
-  font-size:15px;
-  margin-right:10PX;
+  font-size:70%;
+
     }
 
 
@@ -79,9 +81,11 @@ body {
 .nav-menu li a{
   color:#D7763C;
   text-decoration:none;
-  padding:10px 60px;
+/*   padding:20% 20%; */
+  display:block;
+  width:200px;
   font-family:"Verdana";
-  font-size:15px;
+  font-size:110%;
     }
 
 /*season lisr drop down*/
@@ -355,7 +359,7 @@ text-align:left;
 }
 
 .ScheduleDiv .homePlayerName{
-font-size:35px;
+font-size:200%;
 margin-top:5%;
 
   margin-left:10%;
@@ -376,20 +380,20 @@ text-align:left;
 }
 
 .WinPercentage h5{
- margin-left:10%;
+ margin-left:5%;
   margin-right:50%;
 /*  border:solid; */
   width:25%;
   text-align:center;
-  font-size:15px;
+  font-size:120%;
 }
 
 
 
 .WinPercentage svg{
  margin-left:10%;
-   height:25%;
-    width:25%;
+   height:15%;
+    width:15%;
 /*  border:solid; */
 }
 
@@ -405,23 +409,25 @@ text-align:left;
 }
 .WinPercentage text{
 
-  font-size:25px;
+  font-size:150%;
+  x:20%;
+  y:20%;
 }
 #svgSide{
   margin-right:20%;
-  font-size:20px;
+  font-size:120%;
   float:right;
   padding:0%;
 /*   border:solid; */
   width:30%;
-  margin-top:3%;
+  margin-top:0%;
   text-align:center;
 }
 
 .WinPercentage #svgBottom  svg{
  margin-left:10%;
-   height:15%;
-    width:15%;
+   height:10%;
+    width:10%;
 /*   border:solid; */
 }
 
@@ -439,5 +445,5 @@ text-align:left;
 .WinPercentage #svgBottom text{
   x:40%;
   y:40%;
-  font-size:15px;
+  font-size:80%;
 }

@@ -10,22 +10,35 @@ class exceltoDB:
   def __init__(self,filename):
     self.filename=filename
     self.scheduleData=[]
-    self.playerData=[]
+    self.playerData=['super']
 
 
   def readExcel(self):
     #catch error coloumn name match
-    df=pd.read_excel(self.filename,sheet_name='Sheet1',dtype={'Home': str, 'Away': str})
-    for index,row in df.iterrows():
-      self.scheduleData.append([row['Level'],row['Division'],row['Home'],row['Away'],row['Deadline'].date()])
-    df=pd.read_excel(self.filename,sheet_name='Sheet2')
-    for index,row in df.iterrows():
-      self.playerData.append([row['Player Name']])
+    try:
+
+      df=pd.read_excel(self.filename,sheet_name='Sheet1',dtype={'Home': str, 'Away': str})
+      for index,row in df.iterrows():
+        self.scheduleData.append([row['Level'],row['Division'],row['Home'],row['Away'],row['Deadline'].date()])
+        self.playerData.append(row['Home'])
+        self.playerData.append(row['Away'])
+
+
+
+
+
+#       df=pd.read_excel(self.filename,sheet_name='Sheet2')
+#       for index,row in df.iterrows():
+#         self.playerData.append([row['Player Name']])
+    except:
+      return 'error'
 
   def getScheduleData(self):
     return self.scheduleData
 
   def getPlayerData(self):
+    tempset=set(self.playerData)
+    self.playerData=list(tempset)
     return self.playerData
 
 class updateScore:

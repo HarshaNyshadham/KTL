@@ -2,6 +2,25 @@
 
 {% block content %}
 <div class="ScheduleDiv" >
+
+
+         <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="color:red;font-weight:bold;text-align:center">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+
+
+
+
+
 <body>
   <div class="createSeason">
     <h4> Create Season   </h4>

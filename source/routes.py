@@ -199,10 +199,15 @@ def upload():
     if form.validate_on_submit():
         filename = secure_filename(form.file.data.filename)
         form.file.data.save(EXCEL_PATH + filename)
+
 #      code for excel to score db --- upload schedule
         excelData=exceltoDB(EXCEL_PATH + filename)
-        excelData.readExcel()
+
+        if(excelData.readExcel()=='error'):
+          flash("Incorrect Excel")
+          return render_template('upload.html', form=form,form1=playerForm)
         data=excelData.getScheduleData()
+
       #delete score table if uploading again for same season
         db.session.query(score).delete()
         db.session.commit()
@@ -214,15 +219,22 @@ def upload():
 
       #code to upload player_id from excel to user table and point table
         data=excelData.getPlayerData()
+
       #clear user db for initial upload from excel and point table
-        db.session.query(user).delete()
+        current_players=user.query.with_entities(user.firstName).all()
+        player_list=[]
+        for player in current_players:
+          player_list.append(player[0])
+        print(player_list)
+        #db.session.query(user).delete()
         db.session.query(pointTable).delete()
         db.session.commit()
         for elem in data:
           if(elem):
-            userDB=user(firstName=elem[0])
-            ptRecords=pointTable(player_id=elem[0],tie=0)
-            db.session.add(userDB)
+            if(elem not in player_list): #new season user dont have to register again
+              userDB=user(firstName=elem)
+              db.session.add(userDB)
+            ptRecords=pointTable(player_id=elem,tie=0)
             db.session.add(ptRecords)
         db.session.commit()
         return redirect(url_for('schedule'))
@@ -239,6 +251,8 @@ def upload():
 @app.route('/deleteDB')
 def deleteDB():
   db.session.query(score).delete()
+  db.session.query(user).delete()
+  db.session.add(user(firstName='uno'))
   db.session.commit()
 
   return redirect(url_for('schedule'))

@@ -10,6 +10,8 @@ from datetime import datetime,date
 from sqlalchemy import and_,or_,desc
 import string
 
+#EXCEL_PATH='uploads/'
+EXCEL_PATH='/home/Harshanand/mysite/uploads/'
 
 @app.route('/')
 @app.route('/index')
@@ -153,24 +155,34 @@ def enterScore():
 
 #     Validate entered score
 
-      if(p1s1==p2s1 or p1s2==p2s2):
-        flash('Invalid Score!! please check')
-        return render_template("scoreForm.html",form=form,p1=request.args.get('player1'),
-                          p2=request.args.get('player2'))
-      elif((p1s1<6 and p2s1<6) or (p1s2<6 and p2s2<6)):
-        flash('Invalid Score!! please check')
-        return render_template("scoreForm.html",form=form,p1=request.args.get('player1'),
-                          p2=request.args.get('player2'))
-      else:
-        update_Score=score.query.filter_by(id=request.args.get('id')).first()
-        update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
+#       if(p1s1==p2s1 or p1s2==p2s2):
+#         flash('Invalid Score!! please check')
+#         return render_template("scoreForm.html",form=form,p1=request.args.get('player1'),
+#                           p2=request.args.get('player2'))
+#       elif((p1s1<6 and p2s1<6) or (p1s2<6 and p2s2<6)):
+#         flash('Invalid Score!! please check')
+#         return render_template("scoreForm.html",form=form,p1=request.args.get('player1'),
+#                           p2=request.args.get('player2'))
+#       else:
+      update_Score=score.query.filter_by(id=request.args.get('id')).first()
+      update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
 
 #        update point table
-        print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
-        _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,player1=request.args.get('player1'),player2=request.args.get('player2'))
-        _score.updatePlayerScore()
+      print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
+      _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,player1=request.args.get('player1'),player2=request.args.get('player2'))
+      winner=_score.updatePlayerScore()
+      if(winner):
+        if(winner=='TIE'):
+          flash('Its a TIE')
+        else:
+          flash(winner + ' is the winner')
         db.session.commit()
-        return redirect(url_for('schedule'))
+      else:
+        flash('Invalid Score!! Please check')
+        return render_template("scoreForm.html",form=form,p1=request.args.get('player1'),
+                          p2=request.args.get('player2'))
+
+      return redirect(url_for('schedule'))
 
 
 
@@ -186,9 +198,9 @@ def upload():
 
     if form.validate_on_submit():
         filename = secure_filename(form.file.data.filename)
-        form.file.data.save('/home/Harshanand/mysite/uploads/' + filename)
+        form.file.data.save(EXCEL_PATH + filename)
 #      code for excel to score db --- upload schedule
-        excelData=exceltoDB('/home/Harshanand/mysite/uploads/' + filename)
+        excelData=exceltoDB(EXCEL_PATH + filename)
         excelData.readExcel()
         data=excelData.getScheduleData()
       #delete score table if uploading again for same season

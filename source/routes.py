@@ -16,6 +16,10 @@ EXCEL_PATH='/home/Harshanand/mysite/uploads/'
 @app.route('/')
 @app.route('/index')
 def index():
+  if current_user.is_authenticated:
+    return render_template("home.html",data=current_user,tabledata=score.query.filter((or_(score.player_id1==current_user.firstName,
+                                                                                          score.player_id2==current_user.firstName))).order_by(score.deadline).all())
+  else:
     return render_template("home.html",data=current_user)
 
 # # @app.route('/admin')
@@ -251,8 +255,16 @@ def upload():
 @app.route('/deleteDB')
 def deleteDB():
   db.session.query(score).delete()
-  db.session.query(user).delete()
-  db.session.add(user(firstName='uno'))
+#   db.session.query(user).delete()
+#  db.session.add(user(firstName='uno'))
   db.session.commit()
 
   return redirect(url_for('schedule'))
+
+# @app.route('/playerSchedule',methods=['GET', 'POST'])
+# def playerSchedule():
+#   var =request.args.get('playername')
+#   return redirect(url_for(PointTable))
+
+
+

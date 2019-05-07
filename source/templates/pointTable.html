@@ -3,7 +3,7 @@
 {% block content %}
   <div class="ScheduleDiv">
     <h3>
-	{{ title }}
+	{{ title }} Point Table
   </h3>
       <div class="filterDiv">
 
@@ -45,8 +45,8 @@
          <tbody>
             {% for entry in data %}
                <tr>
-                  <td>{{ entry.player_id }}</td>
-                  <td>{{ entry.played }}</td>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
                   <td>{{ entry.win }}</td>
                   <td>{{ entry.loss }}</td>
                   <td>{{ entry.tie }}</td>

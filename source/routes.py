@@ -12,6 +12,7 @@ import string
 
 #EXCEL_PATH='uploads/'
 EXCEL_PATH='/home/Harshanand/mysite/uploads/'
+SEASON_NAME=''
 
 @app.route('/')
 @app.route('/index')
@@ -95,12 +96,12 @@ def schedule():
 
       if(player):
         queryData=score.query.filter((or_(score.player_id1==player,score.player_id2==player))).order_by(score.deadline).all()
-        return render_template("schedule.html",title="Spring Schedule",data=queryData,form=form)
+        return render_template("schedule.html",title=SEASON_NAME,data=queryData,form=form)
       if(_deadline):
         queryData=score.query.filter(score.deadline==_deadline).all()
-        return render_template("schedule.html",title="Spring Schedule",data=queryData,form=form)
+        return render_template("schedule.html",title=SEASON_NAME,data=queryData,form=form)
     #print(form.errors)
-    return render_template("schedule.html",title="Spring Schedule",data=score.query.all(),form=form)
+    return render_template("schedule.html",title=SEASON_NAME,data=score.query.all(),form=form)
 
 @app.route('/players')
 #@login_required
@@ -137,11 +138,11 @@ def PointTable():
       players=list(set(players))
 
       query=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
-      return render_template("pointTable.html",title="Points Table",data=query,form=form)
+      return render_template("pointTable.html",title=SEASON_NAME,data=query,form=form)
 
 
     #print(form.errors)
-    return render_template("pointTable.html",title="Points Table",data=pointTable.query.order_by(desc(pointTable.points)).all(),form=form)
+    return render_template("pointTable.html",title=SEASON_NAME,data=pointTable.query.order_by(desc(pointTable.points)).all(),form=form)
 
 @app.route('/enterScore',methods=['GET', 'POST'])
 def enterScore():
@@ -203,7 +204,7 @@ def upload():
     if form.validate_on_submit():
         filename = secure_filename(form.file.data.filename)
         form.file.data.save(EXCEL_PATH + filename)
-
+        SEASON_NAME=form.seasonName.data
 #      code for excel to score db --- upload schedule
         excelData=exceltoDB(EXCEL_PATH + filename)
 
@@ -261,10 +262,13 @@ def deleteDB():
 
   return redirect(url_for('schedule'))
 
-# @app.route('/playerSchedule',methods=['GET', 'POST'])
-# def playerSchedule():
-#   var =request.args.get('playername')
-#   return redirect(url_for(PointTable))
+@app.route('/playerSchedule',methods=['GET', 'POST'])
+def playerSchedule():
+  var =request.args.get('playername')
+#   print(var)
+  userHome = user.query.filter_by(firstName=var).first()
+  return render_template("home.html",data=userHome,tabledata=score.query.filter((or_(score.player_id1==var,
+                                                                                          score.player_id2==var))).order_by(score.deadline).all())
 
 
 

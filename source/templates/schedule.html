@@ -4,7 +4,7 @@
   <div class="ScheduleDiv">
 
     <h3>
-	<p class="scheduleTitle">{{ title }}</p>
+	<p class="scheduleTitle">{{ title }} Schedule</p>
 <!--   <p class="enterScore"> <a href="{{ url_for('enterScore') }}">Enter Score</a></p> -->
 
   </h3>
@@ -60,13 +60,7 @@
                   <td>{{ entry.player_id2 }}</td>
                   <td>{{ entry.deadline }}</td>
                  {% if entry.score or entry.player_id1=='Bye' or entry.player_id2=='Bye' %}
-                  <td id="scoreText">{{ entry.score }} &nbsp &nbsp
-                       {% if current_user.username=='admin' and entry.player_id1!='Bye' and entry.player_id2!='Bye' %}
-                    <a style="background-color:#24AFFF;" href="">Update</a>
-                        {% endif %}
-
-
-                 </td>
+                  <td id="scoreText">{{ entry.score }}</td>
                  {% else %}
                   <td><a href="{{ url_for('enterScore', player1=entry.player_id1,player2=entry.player_id2,
                     id=entry.id) }}"

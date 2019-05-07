@@ -12,13 +12,47 @@
     <svg class="levelSVG" xmlns="http://www.w3.org/2000/svg">
     <g>
     <rect ></rect>
-    <text x="100" y="30">Level 4.5</text>
+    {% if tabledata[0] %}
+    <text x="100" y="30">Level {{tabledata[0].level}}</text>
+    {% endif %}
     </g>
     </svg>
     </p>
      <br>
 
+    <div class="WinPercentage">
+    <h5 style="text-align:left;">{{ data.username }} Schedule</h5>
 
+
+          <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Home</th>
+               <th>Away</th>
+               <th>Deadline</th>
+               <th >Score</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in tabledata %}
+               <tr>
+                  <td>{{ entry.player_id1 }}</td>
+                  <td>{{ entry.player_id2 }}</td>
+                  <td>{{ entry.deadline }}</td>
+
+                  <td>{{ entry.score }}</td>
+
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+
+
+
+
+    </div>
 
 
 
@@ -68,43 +102,7 @@
 
     </div>
 
-    <div class="WinPercentage">
-    <h5>{{ data.username }} matches</h5>
 
-
-          <table class="dataframe">
-         <thead>
-            <tr>
-               <th>Home</th>
-               <th>Away</th>
-               <th>Deadline</th>
-               <th >Score</th>
-               <th>Division</th>
-               <th>Level</th>
-            </tr>
-         </thead>
-
-         <tbody>
-            {% for entry in tabledata %}
-               <tr>
-                  <td>{{ entry.player_id1 }}</td>
-                  <td>{{ entry.player_id2 }}</td>
-                  <td>{{ entry.deadline }}</td>
-
-                  <td>{{ entry.score }}</td>
-
-                  <td>{{ entry.division }}</td>
-                  <td>{{ entry.level }}</td>
-               </tr>
-            {% endfor %}
-         </tbody>
-      </table>
-
-
-
-
-
-    </div>
 
 
     {% endif %}

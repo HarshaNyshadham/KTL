@@ -93,7 +93,7 @@
                   <td>{{ entry.player_id1 }}</td>
                   <td>{{ entry.player_id2 }}</td>
                   <td>{{ entry.deadline }}</td>
-                  {%if entry.score==None %}
+                  {%if entry.score==nan %}
                      <td id="scoreText"> </td>
                   {%else%}
                      <td><b>{{ entry.score }}</b></td>

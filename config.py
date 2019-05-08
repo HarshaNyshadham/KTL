@@ -6,7 +6,7 @@ class Config(object):
     username="Harshanand",
     password="krazy@tennis",
     hostname="Harshanand.mysql.pythonanywhere-services.com",
-    databasename="Harshanand$krazyTennis",
+    databasename="Harshanand$final",
 )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'Krazy112019'

@@ -264,9 +264,11 @@ font-size:120%;
 
 }
 
-.AboutDiv p{
- color:red;
-text-align:center;
+.AboutDiv li{
+font-size:110%;
+margin-left:5%;
+margin-right:5%;
+  padding:1%;
 }
 
 

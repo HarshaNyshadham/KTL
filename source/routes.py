@@ -284,5 +284,7 @@ def playerSchedule():
   return render_template("home.html",data=userHome,tabledata=score.query.filter((or_(score.player_id1==var,
                                                                                           score.player_id2==var))).order_by(score.deadline).all(),PTdata=pointTable.query.filter_by(player_id=var).first())
 
-
+@app.route('/about')
+def about():
+  return render_template("about.html")
 

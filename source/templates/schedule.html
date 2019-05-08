@@ -59,7 +59,7 @@
                   <td>{{ entry.player_id1 }}</td>
                   <td>{{ entry.player_id2 }}</td>
                   <td>{{ entry.deadline }}</td>
-                 {% if entry.score=='nan' or entry.player_id1=='Bye' or entry.player_id2=='Bye' %}
+                 {% if entry.score!='nan' or entry.player_id1=='Bye' or entry.player_id2=='Bye' %}
                    {%if entry.score=='nan' %}
                      <td id="scoreText"> </td>
                    {%else%}

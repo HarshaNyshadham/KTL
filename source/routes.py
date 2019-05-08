@@ -11,7 +11,7 @@ from sqlalchemy import and_,or_,desc
 import string
 
 #EXCEL_PATH='uploads/'
-EXCEL_PATH='/home/Harshanand/mysite/KTL/uploads/'
+EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 
 @app.route('/')

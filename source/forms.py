@@ -29,6 +29,7 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField(
         'Repeat Password*', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
+    termsbox= BooleanField('Accept Terms & Conditions',validators=[DataRequired()])
 
     def validate_username(self, username):
         userRegister = user.query.filter_by(username=username.data).first()

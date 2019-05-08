@@ -1,6 +1,74 @@
 {% extends "index.html" %}
 
 {% block content %}
+
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#myBtn:hover,
+#myBtn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="ScheduleDiv">
     <h1>Register</h1>
     <form action="" method="post">
@@ -48,7 +116,79 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.termsbox.label }}
+            {{ form.termsbox }} &nbsp &nbsp &nbsp <a id="myBtn" style="color:red;">Read Terms and Conditions</a> <br>
+            {% for error in form.termsbox.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
 </div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>ACCIDENT WAIVER AND RELEASE OF LIABILITY FORM
+Name of the Event: Katy Tennis League Tournament/Championship<br>
+Year of Coverage: 2019<br>
+Event location:  Players find their own Tennis Courts<br>
+
+I HEREBY ASSUME ALL OF THE RISKS OF PARTICIPATING AND/OR VOLUNTEERING IN THIS ACTIVITY OR EVENT, including by way of example and not limitation, any risks that may arise from negligence or carelessness on the part of the persons or entities being released, from dangerous or defective equipment or property owned, maintained, or controlled by them, or because of their possible liability without fault.
+
+I acknowledge that this Accident Waiver and Release of Liability Form will be used by the event holders, sponsors, and organizers of the activity or event in which I may participate, and that it will govern my actions and responsibilities at said activity or event.
+
+I hereby take action for myself, my executors, administrators, heirs, next of kin, successors, and assigns as follows:
+
+(A) I WAIVE, RELEASE, AND DISCHARGE from any and all liability, including but not limited to, liability arising from the negligence or fault of the entities or persons released, for my death, disability, personal injury, property damage, property theft, or actions of any kind which may hereafter occur to me including my traveling to and from this event, THE FOLLOWING ENTITIES OR PERSONS: KTL (Katy Tennis League) KATY TX and/or their directors, organizers, officers, employees, volunteers, representatives, and agents, the activity or event holders, activity or event sponsors, activity or event volunteers;
+
+(B) I INDEMNIFY, HOLD HARMLESS, AND PROMISE NOT TO SUE the entities or persons mentioned in this paragraph from any and all liabilities or claims made as a result of participation in this activity or event, whether caused by the negligence of release or otherwise.
+
+I acknowledge that the KTL and their directors, officers, volunteers, representatives, and agents are NOT responsible for the errors, omissions, acts, or failures to act of any party or entity conducting a specific event or activity on behalf of the KTL
+
+I hereby consent to receive medical treatment which may be deemed advisable in the event of injury, accident, and/or illness during this activity or event.
+
+I understand that at this event or related activities, I may be photographed. I agree to allow my photo, video, or film likeness to be used for any legitimate purpose by the event holders, producers, sponsors, organizers, and assigns.
+
+The accident waiver and release of liability shall be construed broadly to provide a release and waiver to the maximum extent permissible under applicable law.
+ </p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+
 {% endblock %}

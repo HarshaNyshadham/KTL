@@ -230,7 +230,7 @@ def upload():
         for elem in data:
           if(elem):
             if(elem[5]!=None):
-              scoreDB=score(player_id1=elem[2],player_id2=elem[3],score=elem[5],deadline=elem[4],level=elem[0],division=elem[1])
+              scoreDB=score(player_id1=elem[2],player_id2=elem[3],score=str(elem[5]),deadline=elem[4],level=elem[0],division=elem[1])
             else:
               scoreDB=score(player_id1=elem[2],player_id2=elem[3],score='',deadline=elem[4],level=elem[0],division=elem[1])
             db.session.add(scoreDB)

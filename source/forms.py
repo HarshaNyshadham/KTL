@@ -22,9 +22,9 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username*', validators=[DataRequired()])
     #firstname = StringField('Firstname', validators=[DataRequired()])
     firstname=SelectField('Player ID*',choices=[],validators=[DataRequired()])
-    lastname = StringField('Lastname')
+#     lastname = StringField('Lastname')
     phone = StringField('Phone')
-    email = StringField('Email', validators=[Email()])
+    email = StringField('Email')# validators=[Email()])
     password = PasswordField('Password*', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password*', validators=[DataRequired(), EqualTo('password')])
@@ -35,15 +35,15 @@ class RegistrationForm(FlaskForm):
         if userRegister is not None:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
-        userRegister = user.query.filter_by(email=email.data).first()
-        if userRegister is not None:
-            raise ValidationError('Please use a different email address.')
+#     def validate_email(self, email):
+#         userRegister = user.query.filter_by(email=email.data).first()
+#         if userRegister is not None:
+#             raise ValidationError('Please use a different email address.')
 
-    def validate_phone(self, phone):
-        userRegister = user.query.filter_by(phone=phone.data).first()
-        if userRegister is not None:
-            raise ValidationError('Please use a different phone number.')
+#     def validate_phone(self, phone):
+#         userRegister = user.query.filter_by(phone=phone.data).first()
+#         if userRegister is not None:
+#             raise ValidationError('Please use a different phone number.')
 
     def validate_firstname(self, firstname):
         userRegister = user.query.filter_by(firstName=firstname.data).first()

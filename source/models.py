@@ -17,8 +17,8 @@ class user(UserMixin ,db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     firstName = db.Column(db.String(64),unique=True)
     lastName = db.Column(db.String(64))
-    email = db.Column(db.String(120), index=True, unique=True)
-    phone = db.Column(db.String(120), index=True, unique=True)
+    email = db.Column(db.String(120), index=True)#, unique=True)
+    phone = db.Column(db.String(120), index=True)#, unique=True)
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):
@@ -53,6 +53,14 @@ class pointTable(db.Model):
     bonus = db.Column(db.Integer,default=0)
     points = db.Column(db.Integer,default=0)
     xrating = db.Column(db.Integer,default=1000)
+    gamesplayed= db.Column(db.Integer,default=0)
+    gameswon= db.Column(db.Integer,default=0)
+    set1played= db.Column(db.Integer,default=0)
+    set1won= db.Column(db.Integer,default=0)
+    set2played= db.Column(db.Integer,default=0)
+    set2won= db.Column(db.Integer,default=0)
+    set3played= db.Column(db.Integer,default=0)
+    set3won= db.Column(db.Integer,default=0)
 
     def __repr__(self):
         return '<User {}>'.format(self.postion)

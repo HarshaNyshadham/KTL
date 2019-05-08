@@ -19,7 +19,7 @@ class exceltoDB:
 
       df=pd.read_excel(self.filename,sheet_name='Sheet1',dtype={'Home': str, 'Away': str})
       for index,row in df.iterrows():
-        self.scheduleData.append([row['Level'],row['Division'],row['Home'],row['Away'],row['Deadline'].date()])
+        self.scheduleData.append([row['Level'],row['Division'],row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
         self.playerData.append(row['Home'])
         self.playerData.append(row['Away'])
 
@@ -137,6 +137,34 @@ class updateScore:
 
     self.player1Record.played+=1
     self.player2Record.played+=1
+
+    #**** games *****
+    self.player1Record.gamesplayed+=int(self.p1sum+self.p2sum)
+    self.player2Record.gamesplayed+=int(self.p1sum+self.p2sum)
+
+    self.player1Record.gameswon+=int(self.p1sum)
+    self.player2Record.gameswon+=int(self.p2sum)
+
+    #**** set1 *****
+    self.player1Record.set1played+=int(self.p1s1)+int(self.p2s1)
+    self.player2Record.set1played+=int(self.p1s1)+int(self.p2s1)
+
+    self.player1Record.set1won+=int(self.p1s1)
+    self.player2Record.set1won+=int(self.p2s1)
+
+    #**** set2 *****
+    self.player1Record.set2played+=int(self.p1s2)+int(self.p2s2)
+    self.player2Record.set2played+=int(self.p1s2)+int(self.p2s2)
+
+    self.player1Record.set2won+=int(self.p1s2)
+    self.player2Record.set2won+=int(self.p2s2)
+
+    #**** set3 *****
+    self.player1Record.set3played+=int(self.p1s3)+int(self.p2s3)
+    self.player2Record.set3played+=int(self.p1s3)+int(self.p2s3)
+
+    self.player1Record.set3won+=int(self.p1s3)
+    self.player2Record.set3won+=int(self.p2s3)
 
     if(p1win):
       self.player1Record.points+=self.win

@@ -19,7 +19,7 @@ SEASON_NAME=''
 def index():
   if current_user.is_authenticated:
     return render_template("home.html",data=current_user,tabledata=score.query.filter((or_(score.player_id1==current_user.firstName,
-                                                                                          score.player_id2==current_user.firstName))).order_by(score.deadline).all())
+                                                                                          score.player_id2==current_user.firstName))).order_by(score.deadline).all(),PTdata=pointTable.query.filter_by(player_id=current_user.firstName).first())
   else:
     return render_template("home.html",data=current_user)
 
@@ -62,7 +62,7 @@ def register():
         userRegister = user.query.filter_by(firstName=form.firstname.data).first()
         userRegister.username=form.username.data
         userRegister.email=form.email.data
-        userRegister.lastName=form.lastname.data
+        #userRegister.lastName=form.lastname.data
         userRegister.phone=form.phone.data
 
         userRegister.set_password(form.password.data)
@@ -146,9 +146,19 @@ def PointTable():
 
 @app.route('/enterScore',methods=['GET', 'POST'])
 def enterScore():
+
+  #check to enter score againt player record and not other users
     if ((current_user.firstName!=request.args.get('player1') and current_user.firstName!=request.args.get('player2')) and current_user.username!="admin"):
       flash("Please enter score againt your record.")
       return redirect(url_for('schedule'))
+    _matchDate=request.args.get('isExpired')
+    _matchDate=datetime.strptime(_matchDate,'%Y-%m-%d').date()
+    #print(_matchDate,datetime.now().date())
+    #check if dealine exeecded
+    if(datetime.now().date()>_matchDate and current_user.username!="admin"):
+      flash("Cannot enter score, deadline exceeded contact admin for extension!!")
+      return redirect(url_for('schedule'))
+
     form=ScoreForm()
     if form.validate_on_submit():
       p1s1=form.player1_set1.data
@@ -170,6 +180,7 @@ def enterScore():
 #                           p2=request.args.get('player2'))
 #       else:
       update_Score=score.query.filter_by(id=request.args.get('id')).first()
+      print(update_Score.deadline,datetime.now().date())
       update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
 
 #        update point table
@@ -218,7 +229,10 @@ def upload():
         db.session.commit()
         for elem in data:
           if(elem):
-            scoreDB=score(player_id1=elem[2],player_id2=elem[3],score='',deadline=elem[4],level=elem[0],division=elem[1])
+            if(elem[5]!=None):
+              scoreDB=score(player_id1=elem[2],player_id2=elem[3],score=elem[5],deadline=elem[4],level=elem[0],division=elem[1])
+            else:
+              scoreDB=score(player_id1=elem[2],player_id2=elem[3],score='',deadline=elem[4],level=elem[0],division=elem[1])
             db.session.add(scoreDB)
         db.session.commit()
 
@@ -239,7 +253,7 @@ def upload():
             if(elem not in player_list): #new season user dont have to register again
               userDB=user(firstName=elem)
               db.session.add(userDB)
-            ptRecords=pointTable(player_id=elem,tie=0)
+            ptRecords=pointTable(player_id=elem)
             db.session.add(ptRecords)
         db.session.commit()
         return redirect(url_for('schedule'))
@@ -268,7 +282,7 @@ def playerSchedule():
 #   print(var)
   userHome = user.query.filter_by(firstName=var).first()
   return render_template("home.html",data=userHome,tabledata=score.query.filter((or_(score.player_id1==var,
-                                                                                          score.player_id2==var))).order_by(score.deadline).all())
+                                                                                          score.player_id2==var))).order_by(score.deadline).all(),PTdata=pointTable.query.filter_by(player_id=var).first())
 
 
 

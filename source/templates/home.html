@@ -3,25 +3,78 @@
 {% block content %}
 
   <div class="ScheduleDiv">
-
+    <div class="WinPercentage">
     {% if current_user.is_anonymous %}
     <p style="font-size=20px">Welcome Guest, Please login to view data.</p>
     {% else %}
-    <p class="homePlayerName">{{ data.firstName }}
+    <p class="homePlayerName">{{ data.firstName }}</p>
 
-    <svg class="levelSVG" xmlns="http://www.w3.org/2000/svg">
-    <g>
-    <rect ></rect>
+
+
+
+
     {% if tabledata[0] %}
-    <text x="100" y="30">Level {{tabledata[0].level}}</text>
+    <h5 id="level">Level - {{tabledata[0].level}}</h5>
+    <h5 id="xrating">X-Rating - {{PTdata.xrating}}</h5>
     {% endif %}
-    </g>
-    </svg>
-    </p>
+    <div></div>
+     <div id="winstat">
+        Matches Win
+        <svg id="svgmatch" height="15">
+        <rect id="rectmatch" y="0" height="15" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+
+
+       <b id='match'></b>% &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Played - {{PTdata.played}};&nbsp  &nbsp Won - {{PTdata.win}}
+
+
+      </div>
+           <div id="winstat2">
+        Games Win &nbsp
+        <svg id="svggame" height="15">
+        <rect id="rectgame" y="0" height="15" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+
+
+       <b id='game'></b>% &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Played - {{PTdata.gamesplayed}};&nbsp &nbsp Won - {{PTdata.gameswon}}
+
+
+      </div>
+
+        <div id="winstat3">
+        Set1 Win &nbsp
+        <svg id="svgset1" height="15">
+        <rect id="rectset1" y="0" height="15" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+       <b id='set1'></b>% &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                Set2 Win &nbsp
+        <svg id="svgset2" height="15">
+        <rect id="rectset2" y="0" height="15" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+       <b id='set2'></b>% &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                Set3 Win &nbsp
+        <svg id="svgset3" height="15">
+        <rect id="rectset3" y="0" height="15" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+       <b id='set3'></b>% &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+
+      </div>
+    </div>
+
+
+
      <br>
 
     <div class="WinPercentage">
-    <h5 style="text-align:left;">{{ data.username }} Schedule</h5>
+    <h5 style="text-align:left;">{{ data.username }}'s Schedule</h5>
 
 
           <table class="dataframe">
@@ -40,9 +93,11 @@
                   <td>{{ entry.player_id1 }}</td>
                   <td>{{ entry.player_id2 }}</td>
                   <td>{{ entry.deadline }}</td>
-
-                  <td>{{ entry.score }}</td>
-
+                  {%if entry.score==None %}
+                     <td id="scoreText"> </td>
+                  {%else%}
+                     <td><b>{{ entry.score }}</b></td>
+                  {%endif%}
                </tr>
             {% endfor %}
          </tbody>
@@ -56,21 +111,9 @@
 
 
 
-    <div class="WinPercentage">
-    <h5>Win Percentage</h5>
 
-    <svg height="100" width="100">
-    <circle  stroke-dasharray="600"/>
-    <text x="33%" y="50%">80%</text>
-    </svg>
-     <div id="svgSide">
-     <p> Matches Played - 10 </p><br>
-     <p> Total Win - 10 </p><br>
-     <p> Total Loss - 10 </p>
-      </div>
-    </div>
 
-    <div class="WinPercentage">
+<!--     <div class="WinPercentage">
     <h5>Game Percentage</h5>
 
     <svg height="100" width="100">
@@ -100,9 +143,44 @@
 
       </div>
 
-    </div>
+    </div> -->
 
+    <script>
+    if ({{PTdata.played}}) {
+      var matchWin = ({{PTdata.win}}) / {{PTdata.played}} * 100;
+      var gameWin = ({{PTdata.gameswon}}) / {{PTdata.gamesplayed}} * 100;
+      var set1Win = ({{PTdata.set1won}}) / {{PTdata.set1played}} * 100;
+      var set2Win = ({{PTdata.set2won}}) / {{PTdata.set2played}} * 100;
 
+      document.write({{PTdata.set1played}});
+      document.write({{PTdata.set1won}});
+      }
+    else {
+      var matchWin=0
+      var gameWin=0
+      var set1Win=0
+      var set2Win=0
+
+      }
+    if ({{PTdata.set3played}}) {
+      var set3Win = ({{PTdata.set3won}}) / {{PTdata.set3played}} * 100;
+      }
+      else{
+        var set3Win=0
+      }
+
+    document.getElementById("match").innerHTML = Math.round(matchWin);
+    document.getElementById("game").innerHTML = Math.round(gameWin);
+    document.getElementById("set1").innerHTML = Math.round(set1Win);
+    document.getElementById("set2").innerHTML = Math.round(set2Win);
+    document.getElementById("set3").innerHTML = Math.round(set3Win);
+
+    document.getElementById("rectmatch").style.width = matchWin;
+    document.getElementById("rectgame").style.width = gameWin;
+    document.getElementById("rectset1").style.width = set1Win;
+    document.getElementById("rectset2").style.width = set2Win;
+    document.getElementById("rectset3").style.width = set3Win;
+    </script>
 
 
     {% endif %}

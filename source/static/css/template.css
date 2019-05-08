@@ -385,12 +385,21 @@ text-align:left;
 .ScheduleDiv .homePlayerName{
 font-size:200%;
 margin-top:5%;
-
+border:solid;
   margin-left:10%;
   margin-right:10%;
-text-align:left;
+text-align:center;
+background-color: black;
+  color:white;
 
+}
 
+.homePlayerName p{
+ border:solid;
+  fill: #D7763C;
+  color:white;
+    margin-left:10%;
+  margin-right:10%;
 }
 
 .WinPercentage{
@@ -405,71 +414,107 @@ text-align:left;
 
 .WinPercentage h5{
  margin-left:5%;
-  margin-right:50%;
+/*   margin-right:50%; */
 /*  border:solid; */
   width:25%;
   text-align:center;
-  font-size:120%;
-}
-
-
-
-.WinPercentage svg{
- margin-left:10%;
-   height:15%;
-    width:15%;
-/*  border:solid; */
-}
-
-.WinPercentage circle{
-  cx:50%;
-  cy:50%;
-  r:45%;
- stroke:#D7763C;
- stroke-width:8;
- fill:#77dd77;
-/*  stroke-dasharray:600; */
-
-}
-.WinPercentage text{
-
   font-size:150%;
-  x:20%;
-  y:20%;
-}
-#svgSide{
-  margin-right:20%;
-  font-size:120%;
-  float:right;
-  padding:0%;
-/*   border:solid; */
-  width:30%;
-  margin-top:0%;
-  text-align:center;
 }
 
-.WinPercentage #svgBottom  svg{
- margin-left:10%;
-   height:10%;
-    width:10%;
-/*   border:solid; */
+.WinPercentage #xrating{
+ float:right;
+  margin-right:5%;
+  margin-bottom:5%;
+  background-color: #D7763C;
+
 }
 
-
-.WinPercentage #svgBottom circle{
-  cx:50%;
-  cy:50%;
-  r:45%;
- stroke:#D7763C;
- stroke-width:8;
- fill:#77dd77;
-/*  stroke-dasharray:600; */
+.WinPercentage #level{
+ float:left;
+  background-color: #77dd77;
+  margin-bottom:5%;
 }
 
-.WinPercentage #svgBottom text{
-  x:40%;
-  y:40%;
-  font-size:80%;
+.WinPercentage #winstat{
+ margin-top:10%;
+  margin-left:5%;
+  font-size:110%;
+  margin-bottom:1%;
 }
 
+.WinPercentage #winstat p{
+/*  float:center; */
+}
 
+.WinPercentage #winstat #svgmatch{
+
+  width:100px;
+  background-color: #D7763C;
+
+}
+
+.WinPercentage #winstat #rectmatch{
+ width:80%;
+
+  fill:#77dd77;
+}
+.WinPercentage #winstat2{
+ margin-top:5%;
+  margin-left:5%;
+  font-size:110%;
+  margin-bottom:1%;
+}
+.WinPercentage #winstat2 #svggame{
+
+  width:100px;
+  background-color: #D7763C;
+
+}
+
+.WinPercentage #winstat2 #rectgame{
+ width:80%;
+
+  fill:#77dd77;
+}
+
+.WinPercentage #winstat3{
+ margin-top:5%;
+  margin-left:5%;
+  font-size:110%;
+  margin-bottom:1%;
+}
+.WinPercentage #winstat3 #svgset1{
+
+  width:100px;
+  background-color: #D7763C;
+
+}
+
+.WinPercentage #winstat3 #rectset1{
+ width:80%;
+
+  fill:#77dd77;
+}
+.WinPercentage #winstat3 #svgset2{
+
+  width:100px;
+  background-color: #D7763C;
+
+}
+
+.WinPercentage #winstat3 #rectset2{
+ width:80%;
+
+  fill:#77dd77;
+}
+.WinPercentage #winstat3 #svgset3{
+
+  width:100px;
+  background-color: #D7763C;
+
+}
+
+.WinPercentage #winstat3 #rectset3{
+ width:80%;
+
+  fill:#77dd77;

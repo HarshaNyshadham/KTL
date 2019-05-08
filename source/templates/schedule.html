@@ -60,10 +60,14 @@
                   <td>{{ entry.player_id2 }}</td>
                   <td>{{ entry.deadline }}</td>
                  {% if entry.score or entry.player_id1=='Bye' or entry.player_id2=='Bye' %}
-                  <td id="scoreText">{{ entry.score }}</td>
+                   {%if entry.score==None %}
+                     <td id="scoreText"> </td>
+                   {%else%}
+                     <td id="scoreText">{{ entry.score }}</td>
+                   {% endif %}
                  {% else %}
                   <td><a href="{{ url_for('enterScore', player1=entry.player_id1,player2=entry.player_id2,
-                    id=entry.id) }}"
+                    id=entry.id,isExpired=entry.deadline) }}"
                          >Enter Score</a></td>
                  {% endif %}
                   <td>{{ entry.division }}</td>

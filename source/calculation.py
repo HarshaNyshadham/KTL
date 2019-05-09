@@ -17,7 +17,7 @@ class exceltoDB:
     #catch error coloumn name match
     try:
 
-      df=pd.read_excel(self.filename,sheet_name='Sheet1',dtype={'Home': str, 'Away': str})
+      df=pd.read_excel(self.filename,sheet_name='Sheet1')#dtype={'Home': str, 'Away': str})
       for index,row in df.iterrows():
         self.scheduleData.append([row['Level'],row['Division'],row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
         self.playerData.append(row['Home'])

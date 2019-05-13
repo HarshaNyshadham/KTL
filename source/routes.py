@@ -7,12 +7,21 @@ from source.models import user,score,pointTable,adminView
 from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm
 from source.calculation import exceltoDB,updateScore
 from datetime import datetime,date
+from dateutil import tz
 from sqlalchemy import and_,or_,desc
 import string
 
 #EXCEL_PATH='uploads/'
 EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
+
+from_zone = tz.gettz('UTC')
+to_zone = tz.gettz('US/Central')
+utc = datetime.utcnow()
+utc = utc.replace(tzinfo=from_zone)
+central = utc.astimezone(to_zone)
+
+
 
 @app.route('/')
 @app.route('/index')
@@ -153,9 +162,10 @@ def enterScore():
       return redirect(url_for('schedule'))
     _matchDate=request.args.get('isExpired')
     _matchDate=datetime.strptime(_matchDate,'%Y-%m-%d').date()
-    #print(_matchDate,datetime.now().date())
+    #print(datetime.now().date())
+    print(_matchDate,datetime.now().date(),central,central.date())
     #check if dealine exeecded
-    if(datetime.now().date()>_matchDate and current_user.username!="admin"):
+    if(central.date()>_matchDate and current_user.username!="admin"):
       flash("Cannot enter score, deadline exceeded contact admin for extension!!")
       return redirect(url_for('schedule'))
 

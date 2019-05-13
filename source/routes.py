@@ -15,11 +15,6 @@ import string
 EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 
-from_zone = tz.gettz('UTC')
-to_zone = tz.gettz('US/Central')
-utc = datetime.utcnow()
-utc = utc.replace(tzinfo=from_zone)
-central = utc.astimezone(to_zone)
 
 
 
@@ -160,11 +155,21 @@ def enterScore():
     if ((current_user.firstName!=request.args.get('player1') and current_user.firstName!=request.args.get('player2')) and current_user.username!="admin"):
       flash("Please enter score againt your record.")
       return redirect(url_for('schedule'))
+
     _matchDate=request.args.get('isExpired')
     _matchDate=datetime.strptime(_matchDate,'%Y-%m-%d').date()
     #print(datetime.now().date())
-    print(_matchDate,datetime.now().date(),central,central.date())
+    #print(_matchDate,datetime.now().date(),central,central.date())
     #check if dealine exeecded
+    from_zone = tz.gettz('UTC')
+    to_zone = tz.gettz('US/Central')
+    utc = datetime.utcnow()
+    utc = utc.replace(tzinfo=from_zone)
+    central = utc.astimezone(to_zone)
+
+
+
+
     if(central.date()>_matchDate and current_user.username!="admin"):
       flash("Cannot enter score, deadline exceeded contact admin for extension!!")
       return redirect(url_for('schedule'))

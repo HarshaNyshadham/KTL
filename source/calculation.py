@@ -1,9 +1,10 @@
 from __future__ import division
 import pandas as pd
-from pandas import ExcelWriter
+from pandas import ExcelWriter,DataFrame
 from pandas import ExcelFile
 from datetime import datetime
-from source.models import pointTable
+from source.models import pointTable,score,user
+from datetime import datetime,date
 
 
 class exceltoDB:
@@ -40,6 +41,61 @@ class exceltoDB:
     tempset=set(self.playerData)
     self.playerData=list(tempset)
     return self.playerData
+
+  def writeExcel(self):
+    PTdata=pointTable.query.all()
+    scoredata=score.query.all()
+    userdata=user.query.all()
+
+    sheet1data={'Home':[],'Away':[],'Deadline':[],'Score':[],'Division':[],'Level':[]}
+    sheet2data={'Player':[],'Played':[],'Win':[],'Loss':[],'Tie':[],'Bonus':[],'Points':[],'Xrating':[],'Gamesplayed':[],'Gameswon':[],'Set1Played':[],'Set1Won':[],
+                'Set2Played':[],'Set2Won':[],'Set3Played':[],'Set3Won':[]}
+    sheet3data={'Username':[],'PlayerID':[],'Email':[],'Phone':[],'Password':[]}
+
+    for elem in scoredata:
+      sheet1data['Home'].append(elem.player_id1)
+      sheet1data['Away'].append(elem.player_id2)
+      sheet1data['Deadline'].append(elem.deadline)
+      sheet1data['Score'].append(elem.score)
+      sheet1data['Division'].append(elem.division)
+      sheet1data['Level'].append(elem.level)
+    for elem in PTdata:
+      sheet2data['Player'].append(elem.player_id)
+      sheet2data['Played'].append(elem.played)
+      sheet2data['Win'].append(elem.win)
+      sheet2data['Loss'].append(elem.loss)
+      sheet2data['Tie'].append(elem.tie)
+      sheet2data['Bonus'].append(elem.bonus)
+      sheet2data['Points'].append(elem.xrating)
+      sheet2data['Xrating'].append(elem.points)
+      sheet2data['Gamesplayed'].append(elem.gamesplayed)
+      sheet2data['Gameswon'].append(elem.gameswon)
+      sheet2data['Set1Played'].append(elem.set1played)
+      sheet2data['Set1Won'].append(elem.set1won)
+      sheet2data['Set2Played'].append(elem.set2played)
+      sheet2data['Set2Won'].append(elem.set2won)
+      sheet2data['Set3Played'].append(elem.set3played)
+      sheet2data['Set3Won'].append(elem.set3won)
+
+    for elem in userdata:
+      sheet3data['Username'].append(elem.username)
+      sheet3data['PlayerID'].append(elem.firstName)
+      sheet3data['Email'].append(elem.email)
+      sheet3data['Phone'].append(elem.phone)
+      sheet3data['Password'].append(elem.password_hash)
+
+    df=DataFrame(sheet1data,columns=['Home','Away','Deadline','Score','Division','Level'])
+    df1=DataFrame(sheet2data,columns=['Player','Played','Win','Loss','Tie','Bonus','Points','Xrating','Gamesplayed','Gameswon','Set1Played','Set1Won','Set2Played','Set2Won','Set3Played','Set3Won'])
+    df2=DataFrame(sheet3data,columns=['Username','PlayerID','Email','Phone','Password'])
+
+    EXCEL_NAME=str(datetime.now().date())+'.xlsx'
+
+    with ExcelWriter(self.filename+EXCEL_NAME) as writer:
+      df.to_excel(writer,sheet_name='Score')
+      df1.to_excel(writer,sheet_name='Point Table')
+      df2.to_excel(writer,sheet_name='Users')
+    print(str(datetime.now().date()))
+    #print(df)
 
 class updateScore:
   def __init__(self,p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,player1,player2):

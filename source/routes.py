@@ -14,8 +14,8 @@ import string
 #EXCEL_PATH='uploads/'
 EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
-
-
+#DOWNLOAD_PATH='downloads/'
+DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads'
 
 
 @app.route('/')
@@ -284,11 +284,8 @@ def upload():
 
 @app.route('/deleteDB')
 def deleteDB():
-  db.session.query(score).delete()
-#   db.session.query(user).delete()
-#  db.session.add(user(firstName='uno'))
-  db.session.commit()
-
+  excel_data=exceltoDB(DOWNLOAD_PATH)#/Users/harsha/Desktop/workspace/Desktop_KTL/downloads/tennis.xlsx')
+  excel_data.writeExcel()
   return redirect(url_for('schedule'))
 
 @app.route('/playerSchedule',methods=['GET', 'POST'])

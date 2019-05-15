@@ -62,8 +62,8 @@ class pointTable(db.Model):
     set3played= db.Column(db.Integer,default=0)
     set3won= db.Column(db.Integer,default=0)
 
-    def __repr__(self):
-        return '<User {}>'.format(self.postion)
+#     def __repr__(self):
+#         return '<User {}>'.format(self.player_id)
 
 class players(db.Model):
     player_id=db.Column(db.String(64), index=True,primary_key=True)

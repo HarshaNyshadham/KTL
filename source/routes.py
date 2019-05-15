@@ -15,7 +15,7 @@ import string
 EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
-DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads'
+DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
 
 
 @app.route('/')

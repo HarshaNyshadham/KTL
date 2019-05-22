@@ -83,9 +83,9 @@ def profile():
 @app.route('/schedule',methods=['GET', 'POST'])
 def schedule():
 
-    if not current_user.is_authenticated:
-        flash('Please login to view data')
-        return redirect(url_for('login'))
+#     if not current_user.is_authenticated:
+#         flash('Please login to view data')
+#         return redirect(url_for('login'))
 
     form=FilterForm()
     form.playerFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in user.query.with_entities(user.firstName).all()]
@@ -115,9 +115,9 @@ def players():
 @app.route('/PointTable',methods=['GET', 'POST'])
 def PointTable():
 
-    if not current_user.is_authenticated:
-      flash('Please login to view data')
-      return redirect(url_for('login'))
+#     if not current_user.is_authenticated:
+#       flash('Please login to view data')
+#       return redirect(url_for('login'))
 
     form=PointTableForm()
     form.divisionFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in score.query.with_entities(score.division).distinct()]
@@ -150,6 +150,10 @@ def PointTable():
 
 @app.route('/enterScore',methods=['GET', 'POST'])
 def enterScore():
+
+    if not current_user.is_authenticated:
+      flash('Please login to enter score')
+      return redirect(url_for('login'))
 
   #check to enter score againt player record and not other users
     if ((current_user.firstName!=request.args.get('player1') and current_user.firstName!=request.args.get('player2')) and current_user.username!="admin"):

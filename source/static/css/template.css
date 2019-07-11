@@ -254,7 +254,7 @@ font-size:120%;
   margin-right: 10%;
   padding: 20px;
   border-style: solid;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .AboutDiv h3{
@@ -334,6 +334,8 @@ background-color: white;
 tr:hover            { background-color: #ffff99;}
 .dataframe td a:hover     { background-color: red;}
 .manageContent p:hover     { background-color: red;}
+.playoffs a:hover     { background-color: red;}
+.playoffs button:hover     { background-color: red;}
 .dataframe .PTplayerName:hover { background-color: white;}
 
 /* score botton */
@@ -526,3 +528,40 @@ background-color: black;
  width:80%;
 
   fill:#77dd77;
+}
+
+#div1{
+    border-right: 6px solid green;
+    width:25%;
+    height: 600px;
+    float:left;
+    text-align:center;
+}
+#div2{
+    border-right: 6px solid green;
+    width:25%;
+    height: 600px;
+    float:left;
+    text-align:center;
+}
+#div3{
+    border-right: 6px solid green;
+    width:25%;
+    height: 600px;
+    float:left;
+    text-align:center;
+}
+.playoffChart {
+
+  border-style: solid;
+  overflow: hidden;
+  opacity:1.0;
+
+}
+
+.playoffs button{
+
+  margin-right:2%;
+  padding:0.5%;
+  background-color: #4CAF50;
+}

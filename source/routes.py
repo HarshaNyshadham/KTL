@@ -304,3 +304,6 @@ def playerSchedule():
 def about():
   return render_template("about.html")
 
+@app.route('/playoffs')
+def playoffs():
+  return render_template("playoffs.html")

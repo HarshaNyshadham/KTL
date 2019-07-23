@@ -6,7 +6,7 @@ from werkzeug import secure_filename
 from source.models import user,score,pointTable,adminView
 from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm
 from source.calculation import exceltoDB,updateScore
-from datetime import datetime,date
+from datetime import datetime,date,timedelta
 from dateutil import tz
 from sqlalchemy import and_,or_,desc
 import string

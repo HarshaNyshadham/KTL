@@ -173,10 +173,11 @@ def enterScore():
     print(central.date()+timedelta(days=7))
 
 
-
-    if((central.date()+timedelta(days=7))>_matchDate and current_user.username!="admin"):
+    if(central.date()>_matchDate+timedelta(days=7) and current_user.username!="admin"):
       flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
       return redirect(url_for('schedule'))
+    elif(central.date()>_matchDate and central.date()<_matchDate+timedelta(days=7) and current_user.username!="admin"):
+      flash("Extension Week!!!")
 
     form=ScoreForm()
     if form.validate_on_submit():

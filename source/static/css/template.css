@@ -14,7 +14,7 @@ html
 
 
 body {
-  background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/static/img/background.jpg');
+  background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/static/img/usopen_back.jpg');
   width:100%;
 
   background-size:100%;
@@ -71,7 +71,7 @@ body {
 
 .nav-menu{
     width:100%;
-    background-color:white;
+    background-color:#0881cc;
     float:center;
     list-style:none;
     padding:10px;
@@ -84,7 +84,7 @@ body {
   display: inline-block;
     }
 .nav-menu li a{
-  color:#D7763C;
+  color:white;
   text-decoration:none;
 padding:5px 50px;
   display:block;
@@ -145,7 +145,7 @@ padding:5px 50px;
   padding: 20px;
 /*   padding:1%; */
   border-style: solid;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .ScheduleDiv h3{
@@ -294,7 +294,8 @@ table.dataframe, .dataframe th, .dataframe td {
 }
 
 .dataframe th{
-  background-color: #77dd77;
+/*   background-color: #77dd77; */
+  background-color: #8ceced;
     color: black;
   padding:1%;
 
@@ -309,7 +310,7 @@ table.dataframe, .dataframe th, .dataframe td {
 }
 
 .dataframe td a{
-  background-color: #77dd77;
+  background-color: #8ceced;
   opacity:1.0;
   padding: 6px 10px;
 /*   padding:5%; */

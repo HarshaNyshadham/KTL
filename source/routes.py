@@ -152,7 +152,7 @@ def PointTable():
 def enterScore():
 
     if not current_user.is_authenticated:
-      flash('Please login to enter score')
+      flash('Please login to enter data')
       return redirect(url_for('login'))
 
   #check to enter score againt player record and not other users
@@ -170,12 +170,12 @@ def enterScore():
     utc = datetime.utcnow()
     utc = utc.replace(tzinfo=from_zone)
     central = utc.astimezone(to_zone)
+    print(central.date()+timedelta(days=7))
 
 
 
-
-    if(central.date()>_matchDate and current_user.username!="admin"):
-      flash("Cannot enter score, deadline exceeded contact admin for extension!!")
+    if((central.date()+timedelta(days=7))>_matchDate and current_user.username!="admin"):
+      flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
       return redirect(url_for('schedule'))
 
     form=ScoreForm()
@@ -186,7 +186,8 @@ def enterScore():
       p2s1=form.player2_set1.data
       p2s2=form.player2_set2.data
       p2s3=form.player2_set3.data
-
+      p1forefeit=form.player1_forefeit.data
+      p2forefeit=form.player2_forefeit.data
 #     Validate entered score
 
 #       if(p1s1==p2s1 or p1s2==p2s2):
@@ -199,12 +200,13 @@ def enterScore():
 #                           p2=request.args.get('player2'))
 #       else:
       update_Score=score.query.filter_by(id=request.args.get('id')).first()
-      print(update_Score.deadline,datetime.now().date())
+      #print(update_Score.deadline,datetime.now().date())
+      print(p1forefeit,p2forefeit)
       update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
 
 #        update point table
-      print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
-      _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,player1=request.args.get('player1'),player2=request.args.get('player2'))
+      #print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
+      _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit,player1=request.args.get('player1'),player2=request.args.get('player2'))
       winner=_score.updatePlayerScore()
       if(winner):
         if(winner=='TIE'):

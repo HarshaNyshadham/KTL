@@ -15,7 +15,8 @@
 
             {{ form.player1_set1 }}
             {{ form.player1_set2 }}
-            {{ form.player1_set3 }}<br>
+            {{ form.player1_set3 }}
+            {{ form.player1_forefeit }} <strong style = "color:red;">Forefeit</strong><br>
             {% for error in form.player1_set1.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
@@ -27,7 +28,8 @@
 
             {{ form.player2_set1 }}
             {{ form.player2_set2 }}
-            {{ form.player2_set3 }}<br>
+            {{ form.player2_set3 }}
+            {{ form.player2_forefeit }} <strong style = "color:red;">Forefeit</strong><br>
             {% for error in form.player_2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}

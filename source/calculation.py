@@ -98,7 +98,7 @@ class exceltoDB:
     #print(df)
 
 class updateScore:
-  def __init__(self,p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,player1,player2):
+  def __init__(self,p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit,player1,player2):
 
     # ******* set point system here *********
     self.played=1
@@ -108,6 +108,8 @@ class updateScore:
     self.bonus=1
     self.setbonus=1
     # ****************************************
+    self.Xchange_p1=0;
+    self.Xchange_p2=0;
 
     self.p1s1=p1s1
     self.p1s2=p1s2
@@ -119,12 +121,20 @@ class updateScore:
     self.p1sum=float(p1s1)+float(p1s2)+float(p1s3)
     self.p2sum=float(p2s1)+float(p2s2)+float(p2s3)
 
+    self.p1forefeit=p1forefeit
+    self.p2forefeit=p2forefeit
 
     self.player1_name=player1
     self.player2_name=player2
 
     self.player1Record=pointTable.query.filter_by(player_id=player1).first()
     self.player2Record=pointTable.query.filter_by(player_id=player2).first()
+
+  def getP1_Xchange(self):
+    return self.Xchange_p1
+
+  def getP2_Xchange(self):
+    return self.Xchange_p2
 
   def updatePlayerScore(self):
     p1points=0
@@ -142,31 +152,49 @@ class updateScore:
 #       p1win=True
 #     else:
 #       p2win=True
-
-
-    if(self.p1s1>self.p2s1 and self.p1s2>self.p2s2):
-      p1win=True
-    elif(self.p1s1<self.p2s1 and self.p1s2<self.p2s2):
+#   code for forefeit returns from here
+    if(self.p1s1=='0' and self.p2s1=='0' and self.p1s2=='0' and self.p2s2=='0' and self.p1s3=='0' and self.p2s3=='0'):
+      if(self.p1forefeit and self.p2forefeit):
+        return False
+      elif(self.p1forefeit):
+        self.player2Record.points+=self.win
+        self.player2Record.win+=1
+        self.player1Record.loss+=1
+        self.player2Record.played+=1
+        self.player1Record.played+=1
+        return self.player2_name
+      elif(self.p2forefeit):
+        self.player1Record.points+=self.win
+        self.player1Record.win+=1
+        self.player2Record.loss+=1
+        self.player1Record.played+=1
+        self.player2Record.played+=1
+        return self.player1_name
+    elif(not self.p1forefeit and  not self.p2forefeit):
+      if(self.p1s1>self.p2s1 and self.p1s2>self.p2s2):
+        p1win=True
+      elif(self.p1s1<self.p2s1 and self.p1s2<self.p2s2):
+          p2win=True
+      elif(self.p1s3>self.p2s3):
+        p1win=True
+        self.player2Record.points+=self.setbonus
+        self.player2Record.bonus+=1
+      elif(self.p1s3<self.p2s3):
         p2win=True
-    elif(self.p1s3>self.p2s3):
-      p1win=True
-      self.player2Record.points+=self.setbonus
-      self.player2Record.bonus+=1
-    elif(self.p1s3<self.p2s3):
-      p2win=True
-      self.player1Record.points+=self.setbonus
-      self.player1Record.bonus+=1
-    elif(self.p1s1=='1' and self.p2s1=='1' and self.p1s2=='1' and self.p2s2=='1' and self.p1s3=='1' and self.p2s3=='1'):
-      self.player1Record.points+=self.tie
-      self.player1Record.tie+=1
-      self.player2Record.points+=self.tie
-      self.player2Record.tie+=1
-      return 'TIE'
-    elif((self.p1s1<=5 and self.p2s1<=5) or (self.p1s2<=5 and self.p2s2<=5) or (self.p1s3<=5 and self.p2s3<=5)):
-      return False
+        self.player1Record.points+=self.setbonus
+        self.player1Record.bonus+=1
+      elif(self.p1s1=='1' and self.p2s1=='1' and self.p1s2=='1' and self.p2s2=='1' and self.p1s3=='1' and self.p2s3=='1'):
+        self.player1Record.points+=self.tie
+        self.player1Record.tie+=1
+        self.player2Record.points+=self.tie
+        self.player2Record.tie+=1
+        return 'TIE'
+      elif((self.p1s1<=5 and self.p2s1<=5) or (self.p1s2<=5 and self.p2s2<=5) or (self.p1s3<=5 and self.p2s3<=5)):
+        return False
+      else:
+        return False
     else:
       return False
-
 
     current_p1_xrating=self.player1Record.xrating
     current_p2_xrating=self.player2Record.xrating
@@ -183,6 +211,9 @@ class updateScore:
 
     new_xrating_p1=current_p1_xrating+((prob_p1_after-prob_p1_before)*1000)
     new_xrating_p2=current_p2_xrating+((prob_p2_after-prob_p2_before)*1000)
+
+    self.Xchange_p1=new_xrating_p1-current_p1_xrating
+    self.Xchange_p2=new_xrating_p2-current_p2_xrating
 
     self.player1Record.xrating= new_xrating_p1
     self.player2Record.xrating= new_xrating_p2

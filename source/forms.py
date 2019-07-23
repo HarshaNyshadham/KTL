@@ -70,6 +70,8 @@ class ScoreForm(FlaskForm):
     player2_set1=SelectField('Set1',choices=score_choice)
     player2_set2=SelectField('Set2',choices=score_choice)
     player2_set3=SelectField('Set3',choices=score_choice)
+    player1_forefeit=BooleanField('Forefeit')
+    player2_forefeit=BooleanField('Forefeit')
     submit = SubmitField('Submit')
 
 

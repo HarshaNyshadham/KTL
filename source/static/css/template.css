@@ -146,6 +146,7 @@ padding:5px 50px;
 /*   padding:1%; */
   border-style: solid;
   opacity: 0.9;
+  overflow:scroll;
 }
 
 .ScheduleDiv h3{

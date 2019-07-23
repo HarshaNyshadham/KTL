@@ -146,7 +146,7 @@ padding:5px 50px;
 /*   padding:1%; */
   border-style: solid;
   opacity: 0.9;
-  overflow:scroll;
+
 }
 
 .ScheduleDiv h3{
@@ -244,8 +244,8 @@ font-size:120%;
 
 .ScheduleDiv form,h1{
  text-align:center;
-  padding:3%
-
+  padding:3%;
+overflow:scroll;
 }
 
 .AboutDiv {

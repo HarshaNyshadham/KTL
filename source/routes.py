@@ -173,6 +173,7 @@ def enterScore():
     print(central.date()+timedelta(days=7))
 
 
+
     if(central.date()>_matchDate+timedelta(days=7) and current_user.username!="admin"):
       flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
       return redirect(url_for('schedule'))
@@ -201,13 +202,21 @@ def enterScore():
 #                           p2=request.args.get('player2'))
 #       else:
       update_Score=score.query.filter_by(id=request.args.get('id')).first()
+      player1=request.args.get('player1')
+      player2=request.args.get('player2')
+
       #print(update_Score.deadline,datetime.now().date())
       print(p1forefeit,p2forefeit)
-      update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
+      if(not p1forefeit and not p2forefeit):
+        update_Score.score=p1s1+'-'+p2s1+','+p1s2+'-'+p2s2+','+p1s3+'-'+p2s3
+      elif(p1forefeit):
+        update_Score.score='Forefeit - '+player1
+      elif(p2forefeit):
+        update_Score.score='Forefeit - '+player2
 
 #        update point table
       #print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
-      _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit,player1=request.args.get('player1'),player2=request.args.get('player2'))
+      _score=updateScore(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit,player1,player2)
       winner=_score.updatePlayerScore()
       if(winner):
         if(winner=='TIE'):

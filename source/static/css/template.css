@@ -245,7 +245,7 @@ font-size:120%;
 .ScheduleDiv form,h1{
  text-align:center;
   padding:3%;
-overflow:scroll;
+/* overflow:scroll; */
 }
 
 .AboutDiv {

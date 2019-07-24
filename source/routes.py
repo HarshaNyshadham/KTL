@@ -105,7 +105,7 @@ def schedule():
         queryData=score.query.filter(score.deadline==_deadline).all()
         return render_template("schedule.html",title=SEASON_NAME,data=queryData,form=form)
     #print(form.errors)
-    return render_template("schedule.html",title=SEASON_NAME,data=score.query.all(),form=form)
+    return render_template("schedule.html",title=SEASON_NAME,data=score.query.order_by(score.deadline).all(),form=form)
 
 @app.route('/players')
 #@login_required

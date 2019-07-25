@@ -17,6 +17,8 @@ admin=Admin(app)
 # csrf = CsrfProtect()
 # csrf.init_app(app)
 
+num_elements_to_generate = 500
+
 from source import routes
 
 

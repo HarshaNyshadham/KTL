@@ -5,30 +5,18 @@
     <h3>
 	{{ title }} Point Table
   </h3>
-      <div class="filterDiv">
 
 
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
 
-    <p> {{ form.levelFilter_feild.label }} {{ form.levelFilter_feild }} &nbsp AND &nbsp
-        {{ form.divisionFilter_feild.label }} {{ form.divisionFilter_feild }}  &nbsp &nbsp
-        {% for error in form.levelFilter_feild.label.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-         {% for error in form.divisionFilter_feild.label.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-
-        {{ form.submit() }}</p>
-
-    </form>
+    <button class="tablink" onclick="openPage('Home', this, 'red')"id="defaultOpen"><b>Level 4.5</b></button>
+    <button class="tablink" onclick="openPage('News', this, 'green')"><b>Level 4.0</b></button>
+    <button class="tablink" onclick="openPage('Contact', this, 'blue')"><b>Level 3.5</b></button>
 
 
-    </div>
+    <div id="Home" class="tabcontent">
 
-
-    <table class="dataframe">
+      <h3>Division A</h3>
+          <table class="dataframe">
          <thead>
             <tr>
                <th>Player</th>
@@ -43,7 +31,7 @@
          </thead>
 
          <tbody>
-            {% for entry in data %}
+            {% for entry in data_45A %}
                <tr>
                  <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
                  <td>{{ entry.played }}</td>
@@ -58,12 +46,214 @@
          </tbody>
       </table>
 
+      <h3>Division B</h3>
+         <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data_45B %}
+               <tr>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#ade30b"><b>{{ entry.points }}</b></td>
+                  <td bgcolor="#63c6c7"><b>{{ entry.xrating }}</b></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+    </div>
+
+
+
+    <div id="News" class="tabcontent">
+      <h3>Division A</h3>
+          <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data_40A %}
+               <tr>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#ade30b"><b>{{ entry.points }}</b></td>
+                  <td bgcolor="#63c6c7"><b>{{ entry.xrating }}</b></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      <h3>Division B</h3>
+      <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data_40B %}
+               <tr>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#ade30b"><b>{{ entry.points }}</b></td>
+                  <td bgcolor="#63c6c7"><b>{{ entry.xrating }}</b></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+    </div>
+
+    <div id="Contact" class="tabcontent">
+      <h3>Division A</h3>
+      <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data_35A %}
+               <tr>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#ade30b"><b>{{ entry.points }}</b></td>
+                  <td bgcolor="#63c6c7"><b>{{ entry.xrating }}</b></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      <h3>Division B</h3>
+      <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Player</th>
+               <th>Matches</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Tie</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>X-Rating</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data_35B %}
+               <tr>
+                 <td><a class="PTplayerName" href="{{ url_for('playerSchedule',playername=entry.player_id)}}">{{ entry.player_id }}</a></td>
+                 <td>{{ entry.played }}</td>
+                  <td>{{ entry.win }}</td>
+                  <td>{{ entry.loss }}</td>
+                  <td>{{ entry.tie }}</td>
+                  <td>{{ entry.bonus }}</td>
+                  <td bgcolor="#ade30b"><b>{{ entry.points }}</b></td>
+                  <td bgcolor="#63c6c7"><b>{{ entry.xrating }}</b></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+            <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="color:red;font-weight:bold;text-align:center">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+
+
 
 
 
       </div>
 
 
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = "#ffff99";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 
 
 

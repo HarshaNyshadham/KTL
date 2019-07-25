@@ -567,3 +567,50 @@ background-color: black;
   padding:0.5%;
   background-color: #4CAF50;
 }
+
+
+/* Style tab links */
+.tablink {
+  background-color: #8ceced;
+  color: black;
+/*   float: left; */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+  margin:0;
+}
+
+.tablink:hover {
+  background-color: #63c6c7;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+/*   padding: 100px 20px; */
+  padding:2%;
+  height: 100%;
+  scroll: auto;
+}
+
+.tabcontent h3{
+  font-size:20px;
+  background-color: #63c6c7;
+  margin-bottom:0;
+  margin-top:1%;
+  border:none;
+  padding:2%;
+}
+
+.tabcontent table{
+ margin:none;
+  height: 100%;
+  width:100%;
+}
+/* #Home {background-color: green;}
+#News {background-color: green;}
+#Contact {background-color: green;} */

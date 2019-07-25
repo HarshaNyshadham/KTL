@@ -119,16 +119,38 @@ def PointTable():
 #       flash('Please login to view data')
 #       return redirect(url_for('login'))
 
-    form=PointTableForm()
-    form.divisionFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in score.query.with_entities(score.division).distinct()]
-    form.levelFilter_feild.choices=[('','')]+[(str(u[0]),str(u[0])) for u in score.query.with_entities(score.level).distinct()]
+#     form=PointTableForm()
+#     form.divisionFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in score.query.with_entities(score.division).distinct()]
+#     form.levelFilter_feild.choices=[('','')]+[(str(u[0]),str(u[0])) for u in score.query.with_entities(score.level).distinct()]
 
-    if form.validate_on_submit():
-      _division=form.divisionFilter_feild.data
-      _level=form.levelFilter_feild.data
+#     if form.validate_on_submit():
+#       _division=form.divisionFilter_feild.data
+#       _level=form.levelFilter_feild.data
 
-      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==_level,score.division==_division)).distinct()
-      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==_level,score.division==_division)).distinct()
+#       getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==_level,score.division==_division)).distinct()
+#       getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==_level,score.division==_division)).distinct()
+#       players=[]
+#       #print(players)
+#       #add data from both player list
+#       for e in getPlayer1:
+#         if(e[0]!='Bye'):
+#           players.append(e[0])
+#       for e in getPlayer2:
+#         if(e[0]!='Bye'):
+#           players.append(e[0])
+#       #get unique values
+#       players=list(set(players))
+
+#       query=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+#       return render_template("pointTable.html",title=SEASON_NAME,data=query,form=form)
+
+
+    #print(form.errors)
+    #return render_template("pointTable.html",title=SEASON_NAME,data=pointTable.query.order_by(desc(pointTable.points)).all(),form=form)
+
+      #Level 4.5 Div A
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==4.5,score.division=='A')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==4.5,score.division=='A')).distinct()
       players=[]
       #print(players)
       #add data from both player list
@@ -141,12 +163,98 @@ def PointTable():
       #get unique values
       players=list(set(players))
 
-      query=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
-      return render_template("pointTable.html",title=SEASON_NAME,data=query,form=form)
+      query_45A=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
 
 
-    #print(form.errors)
-    return render_template("pointTable.html",title=SEASON_NAME,data=pointTable.query.order_by(desc(pointTable.points)).all(),form=form)
+      #Level 4.5 Div B
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==4.5,score.division=='B')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==4.5,score.division=='B')).distinct()
+      players=[]
+      #print(players)
+      #add data from both player list
+      for e in getPlayer1:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      for e in getPlayer2:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      #get unique values
+      players=list(set(players))
+
+      query_45B=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+
+
+      #Level 4.0 Div A
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==4.0,score.division=='A')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==4.0,score.division=='A')).distinct()
+      players=[]
+      #print(players)
+      #add data from both player list
+      for e in getPlayer1:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      for e in getPlayer2:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      #get unique values
+      players=list(set(players))
+
+      query_40A=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+
+
+      #Level 4.0 Div B
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==4.0,score.division=='B')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==4.0,score.division=='B')).distinct()
+      players=[]
+      #print(players)
+      #add data from both player list
+      for e in getPlayer1:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      for e in getPlayer2:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      #get unique values
+      players=list(set(players))
+
+      query_40B=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+
+      #Level 3.5 Div A
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==3.5,score.division=='A')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==3.5,score.division=='A')).distinct()
+      players=[]
+      #print(players)
+      #add data from both player list
+      for e in getPlayer1:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      for e in getPlayer2:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      #get unique values
+      players=list(set(players))
+
+      query_35A=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+
+
+      #Level 3.5 Div B
+      getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==3.5,score.division=='B')).distinct()
+      getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==3.5,score.division=='B')).distinct()
+      players=[]
+      #print(players)
+      #add data from both player list
+      for e in getPlayer1:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      for e in getPlayer2:
+        if(e[0]!='Bye'):
+          players.append(e[0])
+      #get unique values
+      players=list(set(players))
+
+      query_35B=pointTable.query.filter(pointTable.player_id.in_(players)).order_by(desc(pointTable.points)).all()
+
+      return render_template("pointTable.html",title=SEASON_NAME,data_45A=query_45A,data_45B=query_45B,data_40A=query_40A,data_40B=query_40B,data_35A=query_35A,data_35B=query_35B)
 
 @app.route('/enterScore',methods=['GET', 'POST'])
 def enterScore():

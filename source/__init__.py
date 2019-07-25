@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import Config
 from flask_admin import Admin
-
+from flask_wtf import CsrfProtect
 
 
 
@@ -14,7 +14,8 @@ db = SQLAlchemy(app)
 #migrate = Migrate(app, db)
 login = LoginManager(app)
 admin=Admin(app)
-
+csrf = CsrfProtect()
+csrf.init_app(app)
 
 from source import routes
 
@@ -24,4 +25,3 @@ from source.models import adminView,user,score,pointTable
 admin.add_view(adminView(user,db.session))
 admin.add_view(adminView(score,db.session))
 admin.add_view(adminView(pointTable,db.session))
-

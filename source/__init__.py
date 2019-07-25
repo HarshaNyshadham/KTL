@@ -14,8 +14,8 @@ db = SQLAlchemy(app)
 #migrate = Migrate(app, db)
 login = LoginManager(app)
 admin=Admin(app)
-csrf = CsrfProtect()
-csrf.init_app(app)
+# csrf = CsrfProtect()
+# csrf.init_app(app)
 
 from source import routes
 

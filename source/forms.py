@@ -15,6 +15,10 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+class ForgotpwdForm(FlaskForm):
+    firstname=SelectField('Player ID',choices=[],validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 class RegistrationForm(FlaskForm):
 
 

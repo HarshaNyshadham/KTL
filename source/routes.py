@@ -1,10 +1,10 @@
-from source import app,db,admin
+from source import app,db,admin,mail
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug import secure_filename
 from source.models import user,score,pointTable,adminView
-from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm
+from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm,ForgotpwdForm
 from source.calculation import exceltoDB,updateScore
 from datetime import datetime,date,timedelta
 from dateutil import tz
@@ -46,6 +46,27 @@ def login():
         login_user(userLogged, remember=form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
+
+@app.route('/forgotpwd',methods=['GET', 'POST'])
+def forgotpwd():
+
+    form =  ForgotpwdForm()
+    form.firstname.choices=[(u[0],u[0]) for u in user.query.with_entities(user.firstName).all()]
+
+    if form.validate_on_submit():
+      userData=user.query.filter_by(firstName=form.firstname.data).first()
+      #print(userData.email)
+      if userData.email != None:
+        flash('link to change password has been sent to you email, check spam folder aswell')
+        msg=Message("hello",sender="katytennisleague@gmail.com",recipients=[userData.email])
+        msg.body="testing"
+        mail.send(msg)
+        return redirect('login')
+      else:
+        flash('your email is not registered or incorrect contact admin!!')
+        return redirect('login')
+    return render_template('forgotpwd.html',form=form)
 
 @app.route('/logout')
 def logout():

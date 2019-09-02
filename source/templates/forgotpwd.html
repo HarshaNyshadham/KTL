@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+
+
+{% block content %}
+
+  <body class="AboutBody">
+    <div class="AboutDiv">
+
+    <p>
+       To reset password select your player ID, email will be sent to your acount
+      </p>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.firstname.label }}<br>
+            {{ form.firstname }}<br>
+            {% for error in form.firstname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+      </p>
+      <p>{{ form.submit() }}</p>
+
+    </form>
+    </div>
+
+  </body>
+{% endblock %}

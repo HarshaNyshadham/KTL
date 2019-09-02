@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from config import Config
 from flask_admin import Admin
 from flask_wtf import CsrfProtect
-
+from flask_mail import Mail
 
 
 app = Flask(__name__,template_folder='templates')
@@ -14,8 +14,11 @@ db = SQLAlchemy(app)
 #migrate = Migrate(app, db)
 login = LoginManager(app)
 admin=Admin(app)
+mail=Mail(app)
 # csrf = CsrfProtect()
 # csrf.init_app(app)
+
+
 
 num_elements_to_generate = 500
 

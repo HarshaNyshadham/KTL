@@ -9,6 +9,7 @@ from source.calculation import exceltoDB,updateScore
 from datetime import datetime,date,timedelta
 from dateutil import tz
 from sqlalchemy import and_,or_,desc
+from flask_mail import Message
 import string
 
 #EXCEL_PATH='uploads/'

@@ -12,3 +12,10 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'iam-simple'
     SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    MAIL_SERVER='smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USERNAME = 'katytennisleague@gmail.com'
+    MAIL_PASSWORD = 'Tenn1s@k'
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True

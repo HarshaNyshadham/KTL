@@ -15,8 +15,11 @@ db = SQLAlchemy(app)
 login = LoginManager(app)
 admin=Admin(app)
 mail=Mail(app)
-# csrf = CsrfProtect()
-# csrf.init_app(app)
+#csrf = CsrfProtect()
+#csrf.init_app(app)
+csrf = CsrfProtect()
+csrf.init_app(app)
+WTF_CSRF_CHECK_DEFAULT = False
 
 
 

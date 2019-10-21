@@ -12,6 +12,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'iam-simple'
     SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    #SERVER_NAME='local.docker:8000'
 
     MAIL_SERVER='smtp.gmail.com'
     MAIL_PORT = 465

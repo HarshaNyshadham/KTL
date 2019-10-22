@@ -10,6 +10,8 @@ from datetime import datetime,date,timedelta
 from dateutil import tz
 from sqlalchemy import and_,or_,desc
 from flask_mail import Message
+import pandas as pd
+from pandas import ExcelWriter,DataFrame,ExcelFile
 import string
 
 #EXCEL_PATH='uploads/'
@@ -449,3 +451,34 @@ def about():
 @app.route('/playoffs')
 def playoffs():
   return render_template("playoffs.html")
+
+@app.route('/FVLindex')
+def FVLindex():
+  return render_template("FVLindex.html")
+
+@app.route('/FVLschedule')
+def FVLschedule():
+
+  df=pd.read_excel('/home/katytennisleague/mysite/KTL/source/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
+  data=[]
+  for index,row in df.iterrows():
+    print(row['Home'],row['Away'],row['Deadline'],row['Score'])
+    data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
+  #data=[['a','b','11-9-10','10-15']]
+  return render_template("FVLschedule.html",data=data)
+
+
+@app.route('/FVLpointTable')
+def FVLpointTable():
+
+  df=pd.read_excel('/home/katytennisleague/mysite/KTL/source/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+  data=[]
+  for index,row in df.iterrows():
+    #print(row['Home'],row['Away'],row['Deadline'],row['Score'])
+    data.append([row['Team'],row['Played'],row['Won'],row['Lost'],row['Bonus'],row['Points'],row['For'],row['Against'],row['NRR']])
+  #data=[['a','b','11-9-10','10-15']]
+  return render_template("FVLpointTable.html",data=data)
+
+@app.route('/FVLabout')
+def FVLabout():
+  return render_template("FVLabout.html")

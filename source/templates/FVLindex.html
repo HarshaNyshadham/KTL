@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="title">FVL</title>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 2990 12:00:00 GMT" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<link rel="stylesheet" href="/static/css/template.css?v=1.1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <h2>
+      <a href = "{{ url_for('FVLindex') }}">Freinds Volleyball League</a>
+
+
+  </h2>
+  </div>
+  <div class="nav-menu">
+    <ul class="nav-list">
+<!--        <li class="listHome"> <a href="{{ url_for('index') }}">Home</a></li> -->
+       <li> <a href="{{ url_for('FVLschedule') }}">Schedule</a></li>
+       <li> <a href="{{ url_for('FVLpointTable') }}">Point Table</a></li>
+       <li> <a href="{{ url_for('FVLabout') }}">Tourney Rules</a></li>
+<!--        <li> <a style = "background-color: #ade30b;color:black;" href="{{ url_for('playoffs') }}">Playoffs</a></li> -->
+
+<!--        <li>
+          <div class="dropdown">
+          <button class="dropbtn">Season</button>
+          <div class="dropdown-content">
+                <a href="#">Spring 2019</a>
+                <a href="#">Summer 2019</a>
+                <a href="#">Fall 2019</a>
+          </div>
+          </div>
+
+
+      </li> -->
+
+      <li> <a style = "background-color: #ff8000 ;color:white;"href="{{ url_for('index') }}">KTL <i class='fas fa-baseball-ball' style='color:#ffff80 '></i></a></li>
+    </ul>
+
+  </div>
+
+</header>
+{% block content %}{% endblock %}
+
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+{% extends "FVLindex.html" %}
+
+{% block content %}
+  <div class="ScheduleDiv">
+
+    <h3>
+	<p class="scheduleTitle">{{ title }} Winter 2019 Schedule</p>
+<!--   <p class="enterScore"> <a href="{{ url_for('enterScore') }}">Enter Score</a></p> -->
+
+  </h3>
+
+
+        <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <p style="color:red;font-weight:bold;text-align:center">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+
+
+
+
+    <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Home</th>
+               <th>Away</th>
+               <th>Deadline</th>
+               <th>Score</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for entry in data %}
+               <tr>
+                  <td>{{ entry[0] }}</td>
+                  <td>{{ entry[1] }}</td>
+                  <td>{{ entry[2] }}</td>
+                  {%if entry[3]=='x' %}
+                  <td><a href="">Enter Score</a></td>
+                  {%else%}
+                  <td>{{ entry[3] }}</td>
+                  {% endif %}
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+
+
+
+      </div>
+
+
+
+
+
+{% endblock %}

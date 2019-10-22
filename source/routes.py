@@ -459,7 +459,7 @@ def FVLindex():
 @app.route('/FVLschedule')
 def FVLschedule():
 
-  df=pd.read_excel('/home/katytennisleague/mysite/KTL/source/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
+  df=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
   data=[]
   for index,row in df.iterrows():
     print(row['Home'],row['Away'],row['Deadline'],row['Score'])
@@ -471,7 +471,7 @@ def FVLschedule():
 @app.route('/FVLpointTable')
 def FVLpointTable():
 
-  df=pd.read_excel('/home/katytennisleague/mysite/KTL/source/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+  df=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
   data=[]
   for index,row in df.iterrows():
     #print(row['Home'],row['Away'],row['Deadline'],row['Score'])

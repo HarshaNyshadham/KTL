@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField,FileAllowed, FileRequired
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField,TextAreaField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField,TextAreaField,IntegerField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,NumberRange
 from source.models import user,score
 from config import Config
 from source import db
@@ -78,7 +78,19 @@ class ScoreForm(FlaskForm):
     player2_forefeit=BooleanField('Forefeit')
     submit = SubmitField('Submit')
 
+class FVLScoreForm(FlaskForm):
 
+
+    home_set1=IntegerField('hs1',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+    home_set2=IntegerField('hs2',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+    home_set3=IntegerField('hs3',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+    away_set1=IntegerField('as1',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+    away_set2=IntegerField('as2',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+    away_set3=IntegerField('as3',validators=[NumberRange(min=0,max=21,message="Invalid score,min=0 max=21")],default=0)
+
+    home_forefeit=BooleanField('Forefeit')
+    away_forefeit=BooleanField('Forefeit')
+    submit = SubmitField('Submit')
 
 class UploadForm(FlaskForm):
     file = FileField('excel',validators=[FileRequired(),FileAllowed(['xlsx'], 'Excel only!')])

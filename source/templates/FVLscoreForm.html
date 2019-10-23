@@ -1,0 +1,63 @@
+{% extends "FVLindex.html" %}
+
+{% block content %}
+  <div class="ScheduleDiv">
+    <h1>Enter Score</h1>
+    <div class="scoreDiv">
+          <form action="" method="post">
+<!--         {{ form.hidden_tag() }} -->
+        <p class="scoreName">   Sets    </p>
+        <p>
+
+            {{ homeTeam }}
+            {{ form.home_set1(size=5) }}
+            {{ form.home_set2(size=5)}}
+            {{ form.home_set3(size=5)}}
+            {{ form.home_forefeit }} <strong style = "color:red;">Forefeit</strong><br>
+            {% for error in form.home_set1.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+        </p>
+<!--        <p class="scoreName">   {{ awayTeam }}    </p> -->
+        <p>
+
+            {{ awayTeam }}
+            {{ form.away_set1(size=5) }}
+            {{ form.away_set2(size=5) }}
+            {{ form.away_set3(size=5) }}
+            {{ form.away_forefeit }} <strong style = "color:red;">Forefeit</strong><br>
+            {% for error in form.away_set1.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+
+
+
+
+        </p>
+      <p id="scoresumbit">{{ form.submit() }}
+            {% for error in form.submit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            </p>
+    </form>
+
+
+
+
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <span style="color: red;text-align:center;">{{ message }}</span>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+ </div>
+</div>
+{% endblock %}

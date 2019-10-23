@@ -486,6 +486,17 @@ def FVLabout():
 
 @app.route('/FVLscore',methods=['GET', 'POST'])
 def FVLscore():
+
+
+  if not current_user.is_authenticated:
+    flash('Please login to enter data')
+    return redirect(url_for('login'))
+
+  #check to enter score againt player record and not other users
+  if ((current_user.firstName!=request.args.get('home') and current_user.firstName!=request.args.get('away')) and current_user.username!="admin"):
+    flash("Please enter score againt your record.")
+    return redirect(url_for('FVLschedule'))
+
   home=request.args.get('home')
   away=request.args.get('away')
   ScheduleIndex=request.args.get('index')

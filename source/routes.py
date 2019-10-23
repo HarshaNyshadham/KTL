@@ -472,6 +472,7 @@ def FVLschedule():
 def FVLpointTable():
 
   df=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+  df.sort_values(by=['Points'], inplace =True,ascending=False)
   data=[]
   for index,row in df.iterrows():
     #print(row['Home'],row['Away'],row['Deadline'],row['Score'])

@@ -39,7 +39,7 @@ def index():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = LoginForm()
+    form = LoginForm(csrf_enabled=False)
     if form.validate_on_submit():
         userLogged = user.query.filter_by(username=form.username.data).first()
         if userLogged is None or not userLogged.check_password(form.password.data):

@@ -80,7 +80,7 @@ def logout():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = RegistrationForm(csrf_enabled=False)
+    form = RegistrationForm()
     form.firstname.choices=[(u[0],u[0]) for u in user.query.with_entities(user.firstName).all()]
 
 

@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug import secure_filename
 from source.models import user,score,pointTable,adminView
-from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm,ForgotpwdForm
+from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm,ForgotpwdForm, FVLScoreForm
 from source.calculation import exceltoDB,updateScore
 from datetime import datetime,date,timedelta
 from dateutil import tz

@@ -16,10 +16,22 @@
 <body class="FVLbody">
 
 <header>
+
+
   <div class="top" style = "background-color: #0a3471;">
     <h2>
       <a href = "{{ url_for('FVLindex') }}">Freinds Volleyball League</a>
-
+        <ul class="login">
+      {% if current_user.is_authenticated %}
+      <li> <a href="">{{current_user.username}} <i class="glyphicon glyphicon-user"></i></a></li>
+      {% endif %}
+      {% if current_user.is_anonymous %}
+      <li> <a href="{{ url_for('login') }}">Login</a></li>
+      {% else %}
+      <li> <a href="{{ url_for('logout') }}">Logout</a></li>
+      {% endif %}
+      <li> <a href="{{ url_for('register') }}">Register</a></li>
+      </ul>
 
   </h2>
   </div>

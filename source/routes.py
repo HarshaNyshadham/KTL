@@ -176,7 +176,7 @@ def PointTable():
       getPlayer1=score.query.with_entities(score.player_id1).filter(and_(score.level==4.5,score.division=='A')).distinct()
       getPlayer2=score.query.with_entities(score.player_id2).filter(and_(score.level==4.5,score.division=='A')).distinct()
       players=[]
-      #print(players)
+#       print(players)
       #add data from both player list
       for e in getPlayer1:
         if(e[0]!='Bye'):

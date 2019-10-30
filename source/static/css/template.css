@@ -181,7 +181,16 @@ padding:5px 50px;
   align:center;
 }
 
-
+.fvl-welcome{
+   background-color: white;
+  color: black;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+/*   padding:1%; */
+  border-style: solid;
+  opacity: 0.9;
+}
 
 .scoreName{
 /* font-size:20px; */

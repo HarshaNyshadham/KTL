@@ -454,7 +454,7 @@ def playoffs():
 
 @app.route('/FVLindex')
 def FVLindex():
-  return render_template("FVLindex.html")
+  return render_template("FVLHome.html")
 
 @app.route('/FVLschedule')
 def FVLschedule():

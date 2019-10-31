@@ -566,8 +566,8 @@ def FVLscore():
           bonus=0
 
     #invoke reader
-    df_Schedule=pd.read_excel('uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
-    df_PointTable=pd.read_excel('uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+    df_Schedule=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
+    df_PointTable=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
 
     #set score in schedule sheet
     if(homeforefeit):
@@ -626,7 +626,7 @@ def FVLscore():
 #     df_PointTable.at[awayIndex,'NRR']=df_PointTable.at[awayIndex,'For']-df_PointTable.at[awayIndex,'Against']
 
     #invoke writer
-    with pd.ExcelWriter('uploads/FVL_winter2019.xlsx') as writer:
+    with pd.ExcelWriter('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx') as writer:
       df_Schedule.to_excel(writer,sheet_name='Schedule')
       df_PointTable.to_excel(writer,sheet_name='PointTable')
 

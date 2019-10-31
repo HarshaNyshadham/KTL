@@ -19,7 +19,7 @@ EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
-
+FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Krazy BoyZ"]
 
 @app.route('/')
 @app.route('/index')
@@ -47,7 +47,10 @@ def login():
             return redirect(url_for('login'))
 
         login_user(userLogged, remember=form.remember_me.data)
-        return redirect(url_for('index'))
+        if(userLogged.firstName in FVL_PlayedId):
+          return redirect(url_for('FVLindex'))
+        else:
+          return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
 

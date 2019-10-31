@@ -524,7 +524,7 @@ def FVLscore():
       if(homeset1 or homeset2 or awayset1 or awayset2):
         flash('invalid score')
         return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
-    elif(not homeforefeit and not awayforefeit):
+    if(not homeforefeit and not awayforefeit):
       if(homeset1 != 21 and awayset1 != 21):
         flash('invalid score')
         return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)

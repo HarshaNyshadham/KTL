@@ -514,17 +514,27 @@ def FVLscore():
     awayset1=form.away_set1.data
     awayset2=form.away_set2.data
     awayset3=form.away_set3.data
+    homeforefeit=form.home_forefeit.data
+    awayforefeit=form.away_forefeit.data
     #print(homeset1,awayset1)
-    if(homeset1 != 21 and awayset1 != 21):
-      flash('invalid score')
-      return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
-    if(homeset2 != 21 and awayset2 != 21):
-      flash('invalid score')
-      return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
-    if(homeset1 != 21 or homeset2 != 21):
-      if((homeset3 != 0 or awayset3 != 0) and (homeset3 != 21 and awayset3 != 21)):
+    if(homeforefeit or awayforefeit):
+      if(homeset1 or homeset2 or awayset1 or awayset2):
         flash('invalid score')
         return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+    elif(not homeforefeit and not awayforefeit):
+      if(homeset1 != 21 and awayset1 != 21):
+        flash('invalid score')
+        return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+      if(homeset2 != 21 and awayset2 != 21):
+        flash('invalid score')
+        return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+      if(homeset1 != 21 or homeset2 != 21):
+        if((homeset3 != 0 or awayset3 != 0) and (homeset3 != 21 and awayset3 != 21)):
+          flash('invalid score')
+          return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+    elif(homeforefeit and awayforefeit):
+      flash('invalid score')
+      return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
 
     winner=''
       #winner calc
@@ -545,13 +555,24 @@ def FVLscore():
           winner=away
           bonus=2
 #           score=homeset1+'-'+awayset1+' , ' + homeset2+'-'+awayset2 + ' , ' + homeset3+'-'+awayset3
+      elif(homeforefeit):
+          winner="homeforefeit"
+          bonus=0
+      elif(awayforefeit):
+          winner="awayforefeit"
+          bonus=0
 
     #invoke reader
-    df_Schedule=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
-    df_PointTable=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+    df_Schedule=pd.read_excel('uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
+    df_PointTable=pd.read_excel('uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
 
     #set score in schedule sheet
-    df_Schedule.at[int(ScheduleIndex),'Score']=str(homeset1)+'-'+str(awayset1)+' , ' + str(homeset2)+'-'+str(awayset2) + ' , ' + str(homeset3)+'-'+str(awayset3)
+    if(homeforefeit):
+      df_Schedule.at[int(ScheduleIndex),'Score']='Forefeit- '+ home
+    elif(awayforefeit):
+      df_Schedule.at[int(ScheduleIndex),'Score']='Forefeit- '+ away
+    else:
+      df_Schedule.at[int(ScheduleIndex),'Score']=str(homeset1)+'-'+str(awayset1)+' , ' + str(homeset2)+'-'+str(awayset2) + ' , ' + str(homeset3)+'-'+str(awayset3)
 
 
     #update point table
@@ -579,6 +600,14 @@ def FVLscore():
       df_PointTable.at[homeIndex,'Lost']=df_PointTable.at[homeIndex,'Lost']+1
       df_PointTable.at[homeIndex,'Bonus']=df_PointTable.at[homeIndex,'Bonus']+bonus
       df_PointTable.at[homeIndex,'Points']=df_PointTable.at[homeIndex,'Points']+bonus
+    elif(winner=="homeforefeit"):
+      df_PointTable.at[awayIndex,'Won']=df_PointTable.at[awayIndex,'Won']+1
+      df_PointTable.at[awayIndex,'Points']=df_PointTable.at[awayIndex,'Points']+4
+      winner=away
+    elif(winner=="awayforefeit"):
+      df_PointTable.at[homeIndex,'Won']=df_PointTable.at[awayIndex,'Won']+1
+      df_PointTable.at[homeIndex,'Points']=df_PointTable.at[awayIndex,'Points']+4
+      winner=home
 
 #     #NRR calc
 #     Total=homeset1+homeset2+homeset3+awayset1+awayset2+awayset3
@@ -594,7 +623,7 @@ def FVLscore():
 #     df_PointTable.at[awayIndex,'NRR']=df_PointTable.at[awayIndex,'For']-df_PointTable.at[awayIndex,'Against']
 
     #invoke writer
-    with pd.ExcelWriter('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx') as writer:
+    with pd.ExcelWriter('uploads/FVL_winter2019.xlsx') as writer:
       df_Schedule.to_excel(writer,sheet_name='Schedule')
       df_PointTable.to_excel(writer,sheet_name='PointTable')
 

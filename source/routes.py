@@ -606,10 +606,12 @@ def FVLscore():
     elif(winner=="homeforefeit"):
       df_PointTable.at[awayIndex,'Won']=df_PointTable.at[awayIndex,'Won']+1
       df_PointTable.at[awayIndex,'Points']=df_PointTable.at[awayIndex,'Points']+4
+      df_PointTable.at[homeIndex,'Lost']=df_PointTable.at[homeIndex,'Lost']+1
       winner=away
     elif(winner=="awayforefeit"):
       df_PointTable.at[homeIndex,'Won']=df_PointTable.at[awayIndex,'Won']+1
       df_PointTable.at[homeIndex,'Points']=df_PointTable.at[awayIndex,'Points']+4
+      df_PointTable.at[awayIndex,'Lost']=df_PointTable.at[homeIndex,'Lost']+1
       winner=home
 
 #     #NRR calc

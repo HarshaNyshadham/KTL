@@ -507,7 +507,25 @@ def FVLscore():
   score=''
   TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders":3,"Katy Dragons":4,"Katy Legends":5,"Katy Sparks":6,"Katy Whackers":7,"Katy Whackers2":8,"Krazy BoyZ":9}
   bonus=0
+  forefeitAllowed = True
+  ######### Tme Calc ###########
+  _matchDate=request.args.get('deadline')
+  _matchDate=datetime.strptime(_matchDate,'%Y-%m-%d').date()
 
+  from_zone = tz.gettz('UTC')
+  to_zone = tz.gettz('US/Central')
+  utc = datetime.utcnow()
+  utc = utc.replace(tzinfo=from_zone)
+  central = utc.astimezone(to_zone)
+
+  if(central.date()>_matchDate+timedelta(days=7) and current_user.username!="admin"):
+    flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
+    return redirect(url_for('FVLschedule'))
+  elif(central.date()>_matchDate and central.date()<_matchDate+timedelta(days=7) and current_user.username!="admin"):
+    forefeitAllowed=False
+    flash("Extension Week!!! No Forefeit allowed")
+
+  #############################
 
   if form.validate_on_submit():
 
@@ -523,6 +541,9 @@ def FVLscore():
     if(homeforefeit or awayforefeit):
       if(homeset1 or homeset2 or awayset1 or awayset2):
         flash('invalid score')
+        return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+      elif(not forefeitAllowed):
+        flash('forefeit not allowed')
         return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
     if(not homeforefeit and not awayforefeit):
       if(homeset1 != 21 and awayset1 != 21):

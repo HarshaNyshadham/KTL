@@ -313,7 +313,7 @@ def enterScore():
       flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
       return redirect(url_for('schedule'))
     elif(central.date()>_matchDate and central.date()<_matchDate+timedelta(days=7) and current_user.username!="admin"):
-      flash("Extension Week!!!")
+      flash("Extension Week!!!No Forefeit Allowed")
 
     form=ScoreForm()
     if form.validate_on_submit():

@@ -306,14 +306,15 @@ def enterScore():
     utc = utc.replace(tzinfo=from_zone)
     central = utc.astimezone(to_zone)
     print(central.date()+timedelta(days=7))
-
+    tennis_forefeit=True
 
 
     if(central.date()>_matchDate+timedelta(days=7) and current_user.username!="admin"):
       flash("Cannot enter score, deadline and extension week exceeded contact admin!!")
       return redirect(url_for('schedule'))
     elif(central.date()>_matchDate and central.date()<_matchDate+timedelta(days=7) and current_user.username!="admin"):
-      flash("Extension Week!!!No Forefeit Allowed")
+      tennis_forefeit=False
+      flash("Extension Week!!!")
 
     form=ScoreForm()
     if form.validate_on_submit():
@@ -339,6 +340,10 @@ def enterScore():
       update_Score=score.query.filter_by(id=request.args.get('id')).first()
       player1=request.args.get('player1')
       player2=request.args.get('player2')
+
+      if(not tennis_forefeit and (p1forefeit or p2forefeit)):
+        flash('Forefeit NOT Allowed')
+        return redirect(url_for('schedule'))
 
       #print(update_Score.deadline,datetime.now().date())
       print(p1forefeit,p2forefeit)

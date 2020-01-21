@@ -484,7 +484,7 @@ def FVLschedule():
     print(row['Home'],row['Away'],row['Deadline'],row['Score'])
     data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
   #data=[['a','b','11-9-10','10-15']]
-  return render_template("FVLschedule.html",data=data)
+  return render_template("FVLschedule.html",data=data,form=form)
 
 
 @app.route('/FVLpointTable')

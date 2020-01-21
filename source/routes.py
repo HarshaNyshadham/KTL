@@ -20,7 +20,7 @@ SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
 FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Krazy BoyZ"]
-
+FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx'
 @app.route('/')
 @app.route('/index')
 def index():
@@ -467,7 +467,7 @@ def FVLindex():
 @app.route('/FVLschedule')
 def FVLschedule():
 
-  df=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
+  df=pd.read_excel(FVL_fileName,sheet_name='Schedule')
   data=[]
   for index,row in df.iterrows():
     print(row['Home'],row['Away'],row['Deadline'],row['Score'])
@@ -479,7 +479,7 @@ def FVLschedule():
 @app.route('/FVLpointTable')
 def FVLpointTable():
 
-  df=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+  df=pd.read_excel(FVL_fileName,sheet_name='PointTable')
   df.sort_values(by=['Points'], inplace =True,ascending=False)
   data=[]
   for index,row in df.iterrows():
@@ -592,8 +592,8 @@ def FVLscore():
           bonus=0
 
     #invoke reader
-    df_Schedule=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='Schedule')
-    df_PointTable=pd.read_excel('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx',sheet_name='PointTable')
+    df_Schedule=pd.read_excel(FVL_fileName,sheet_name='Schedule')
+    df_PointTable=pd.read_excel(FVL_fileName,sheet_name='PointTable')
 
     #set score in schedule sheet
     if(homeforefeit):
@@ -654,7 +654,7 @@ def FVLscore():
 #     df_PointTable.at[awayIndex,'NRR']=df_PointTable.at[awayIndex,'For']-df_PointTable.at[awayIndex,'Against']
 
     #invoke writer
-    with pd.ExcelWriter('/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx') as writer:
+    with pd.ExcelWriter(FVL_fileName) as writer:
       df_Schedule.to_excel(writer,sheet_name='Schedule')
       df_PointTable.to_excel(writer,sheet_name='PointTable')
 

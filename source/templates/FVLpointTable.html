@@ -25,7 +25,7 @@
 
 
 
-
+    <h3>Division A</h3>
     <table class="dataframe">
          <thead>
             <tr>
@@ -42,14 +42,14 @@
          </thead>
 
          <tbody>
-            {% for entry in data %}
+            {% for entry in dataA %}
                <tr>
                   <td>{{ entry[0] }}</td>
                   <td>{{ entry[1] }}</td>
                   <td>{{ entry[2] }}</td>
                   <td>{{ entry[3] }}</td>
                   <td>{{ entry[4] }}</td>
-                  <td bgcolor="#b2a993"><b>{{ entry[5] }}</b></td>
+                  <td>{{ entry[5] }}</td>
                   <td>{{ entry[6] }}</td>
                   <td>{{ entry[7] }}</td>
                   <td>{{ entry[8] }}</td>
@@ -58,7 +58,39 @@
             {% endfor %}
          </tbody>
       </table>
+     <h3>Division B</h3>
+    <table class="dataframe">
+         <thead>
+            <tr>
+               <th>Team</th>
+               <th>Played</th>
+               <th>Won</th>
+               <th>Lost</th>
+               <th>Bonus</th>
+               <th>Points</th>
+               <th>For/</th>
+               <th>Against/</th>
+               <th>NRR</th>
+            </tr>
+         </thead>
 
+         <tbody>
+            {% for entry in dataB %}
+               <tr>
+                  <td>{{ entry[0] }}</td>
+                  <td>{{ entry[1] }}</td>
+                  <td>{{ entry[2] }}</td>
+                  <td>{{ entry[3] }}</td>
+                  <td>{{ entry[4] }}</td>
+                  <td>{{ entry[5] }}</td>
+                  <td>{{ entry[6] }}</td>
+                  <td>{{ entry[7] }}</td>
+                  <td>{{ entry[8] }}</td>
+
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
 
 
 

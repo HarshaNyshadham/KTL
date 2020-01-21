@@ -21,6 +21,8 @@ SEASON_NAME=''
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
 FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Wood Warriors","Katy Falcons","Katy Boyz2","Underdogs","Katy Bulls"]
 FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_spring2020.xlsx'
+FVL_PoolA=["Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Whackers","Wood Warriors","Katy Falcons"]
+FVL_PoolB=["Cross Creek Smashers","Gully Boyz","Katy Sparks","Katy Whackers2","Katy Boyz2","Underdogs","Katy Bulls"]
 @app.route('/')
 @app.route('/index')
 def index():
@@ -494,12 +496,16 @@ def FVLpointTable():
 
   df=pd.read_excel(FVL_fileName,sheet_name='PointTable')
   df.sort_values(by=['Points'], inplace =True,ascending=False)
-  data=[]
+  dataA=[]
+  dataB=[]
   for index,row in df.iterrows():
     #print(row['Home'],row['Away'],row['Deadline'],row['Score'])
-    data.append([row['Team'],row['Played'],row['Won'],row['Lost'],row['Bonus'],row['Points'],row['For'],row['Against'],row['NRR']])
+    if(row['Team'] in FVL_PoolA):
+      dataA.append([row['Team'],row['Played'],row['Won'],row['Lost'],row['Bonus'],row['Points'],row['For'],row['Against'],row['NRR']])
+    elif(row['Team'] in FVL_PoolB):
+      dataB.append([row['Team'],row['Played'],row['Won'],row['Lost'],row['Bonus'],row['Points'],row['For'],row['Against'],row['NRR']])
   #data=[['a','b','11-9-10','10-15']]
-  return render_template("FVLpointTable.html",data=data)
+  return render_template("FVLpointTable.html",dataA=dataA,dataB=dataB)
 
 @app.route('/FVLabout')
 def FVLabout():

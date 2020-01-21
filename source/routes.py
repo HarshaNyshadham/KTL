@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug import secure_filename
 from source.models import user,score,pointTable,adminView
-from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm,ForgotpwdForm, FVLScoreForm
+from source.forms import LoginForm,RegistrationForm,ScoreForm,UploadForm,FilterForm,addPlayerForm,PointTableForm,ForgotpwdForm, FVLScoreForm,FVLTeamFilter
 from source.calculation import exceltoDB,updateScore
 from datetime import datetime,date,timedelta
 from dateutil import tz
@@ -19,7 +19,7 @@ EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
-FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Krazy BoyZ"]
+FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Wood Warriors","Katy Falcons","Katy Boyz2","Underdogs","Katy Bulls"]
 FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx'
 @app.route('/')
 @app.route('/index')
@@ -464,11 +464,22 @@ def playoffs():
 def FVLindex():
   return render_template("FVLHome.html")
 
-@app.route('/FVLschedule')
+@app.route('/FVLschedule',methods=['GET', 'POST'])
 def FVLschedule():
+
+  form=FVLTeamFilter()
+  form.teamFilter_feild.choices=[('','')]+ [(u,u) for u in FVL_PlayedId]
 
   df=pd.read_excel(FVL_fileName,sheet_name='Schedule')
   data=[]
+
+  if form.validate_on_submit():
+      team=form.teamFilter_feild.data
+      for index,row in df.iterrows():
+        if(row['Home']==team or row['Away']==team):
+          data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
+      return render_template("FVLschedule.html",data=data,form=form)
+
   for index,row in df.iterrows():
     print(row['Home'],row['Away'],row['Deadline'],row['Score'])
     data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
@@ -478,6 +489,8 @@ def FVLschedule():
 
 @app.route('/FVLpointTable')
 def FVLpointTable():
+
+
 
   df=pd.read_excel(FVL_fileName,sheet_name='PointTable')
   df.sort_values(by=['Points'], inplace =True,ascending=False)

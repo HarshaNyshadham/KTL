@@ -107,3 +107,7 @@ class PointTableForm(FlaskForm):
     levelFilter_feild=SelectField('Level',choices=[(' ',' ')],validators=[DataRequired()])
     submit = SubmitField('Submit')
     clear = SubmitField('Clear')
+
+class FVLTeamFilter(FlaskForm):
+    teamFilter_feild=SelectField('Team',choices=[(' ',' ')])
+    submit = SubmitField('Submit')

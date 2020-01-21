@@ -20,7 +20,7 @@ SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
 FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Wood Warriors","Katy Falcons","Katy Boyz2","Underdogs","Katy Bulls"]
-FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_winter2019.xlsx'
+FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_spring2020.xlsx'
 @app.route('/')
 @app.route('/index')
 def index():

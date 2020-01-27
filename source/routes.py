@@ -522,7 +522,7 @@ def FVLteams():
     data.append([row['Team Name'],row['Captain'],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row['Contact']])
 
 #   print(data)
-  return render_template("FVLteams.html",data=data)
+  return render_template("FVLTeams.html",data=data)
 
 @app.route('/FVLscore',methods=['GET', 'POST'])
 def FVLscore():

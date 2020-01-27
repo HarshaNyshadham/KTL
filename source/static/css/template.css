@@ -631,3 +631,18 @@ background-color: black;
 /* #Home {background-color: green;}
 #News {background-color: green;}
 #Contact {background-color: green;} */
+/*FVL team template */
+.teamname table{
+width:100%;
+border:solid;
+text-align:left;
+padding:10%;
+margin-bottom:2%;
+}
+.teamname .teamcontact{
+  border:solid;
+  padding:0%;
+  margin:0%;
+
+  background-color: #ecdfca ;
+}

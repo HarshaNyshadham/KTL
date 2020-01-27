@@ -512,6 +512,17 @@ def FVLpointTable():
 def FVLabout():
   return render_template("FVLabout.html")
 
+@app.route('/FVLteams')
+def FVLteams():
+  df=pd.read_excel(FVL_playerlist,sheet_name='Players List')
+  data=[]
+
+  for index,row in df.iterrows():
+    data.append([row['Team Name'],row['Captain'],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row['Contact']])
+
+#   print(data)
+  return render_template("FVLteams.html",data=data)
+
 @app.route('/FVLscore',methods=['GET', 'POST'])
 def FVLscore():
 

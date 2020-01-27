@@ -1,0 +1,43 @@
+{% extends "FVLindex.html" %}
+{% block content %}
+
+  <body class="AboutBody">
+    <div class="AboutDiv">
+      <h3>
+	Winter 2020 Team Roster:
+  </h3>
+{% for entry in data %}
+    <div class="teamname">
+
+      <h4 class="teamcontact"> {{ entry[0] }}   <p style="float:right;">Contact:&nbsp{{ entry[16] }}</p></h4>
+      <table>
+        <tr>
+          <td style="color:red;"><b>{{ entry[1] }}</b></td>
+          <td>{{ entry[2] }}</td>
+          <td>{{ entry[3] }}</td>
+          <td>{{ entry[4] }}</td>
+          <td>{{ entry[5] }}</td>
+        </tr>
+        <tr>
+          <td>{{ entry[6] }}</td>
+          <td>{{ entry[7] }}</td>
+          <td>{{ entry[8] }}</td>
+          <td>{{ entry[9] }}</td>
+          <td>{{ entry[10] }}</td>
+        </tr>
+        <tr>
+          <td>{{ entry[11] }}</td>
+          <td>{{ entry[12] }}</td>
+          <td>{{ entry[13] }}</td>
+          <td>{{ entry[14] }}</td>
+          <td>{{ entry[15] }}</td>
+        </tr>
+      </table>
+      </div>
+   {% endfor %}
+    </div>
+
+</body>
+
+
+{% endblock %}

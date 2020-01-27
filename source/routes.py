@@ -23,6 +23,7 @@ FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","
 FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_spring2020.xlsx'
 FVL_PoolA=["Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Whackers","Wood Warriors","Katy Falcons"]
 FVL_PoolB=["Cross Creek Smashers","Gully Boyz","Katy Sparks","Katy Whackers2","Katy Boyz2","Underdogs","Katy Bulls"]
+TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders":3,"Katy Dragons":4,"Katy Legends":5,"Katy Sparks":6,"Katy Whackers":7,"Katy Whackers2":8,"Wood Warriors":9,"Katy Falcons":10,"Katy Boyz2":11,"Underdogs":12,"Katy Bulls":13}
 @app.route('/')
 @app.route('/index')
 def index():
@@ -529,7 +530,7 @@ def FVLscore():
   ScheduleIndex=request.args.get('index')
   form=FVLScoreForm(csrf_enabled=False)
   score=''
-  TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders":3,"Katy Dragons":4,"Katy Legends":5,"Katy Sparks":6,"Katy Whackers":7,"Katy Whackers2":8,"Wood Warriors":9,"Katy Falcons":10,"Katy Boyz2":11,"Underdogs":12,"Katy Bulls":13}
+  #TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders":3,"Katy Dragons":4,"Katy Legends":5,"Katy Sparks":6,"Katy Whackers":7,"Katy Whackers2":8,"Wood Warriors":9,"Katy Falcons":10,"Katy Boyz2":11,"Underdogs":12,"Katy Bulls":13}
   bonus=0
   forefeitAllowed = True
   ######### Tme Calc ###########

@@ -53,7 +53,7 @@
                   <td>{{ entry[1] }}</td>
                   <td>{{ entry[2] }}</td>
                   {%if entry[3]=='x' %}
-                  <td><a href="{{ url_for('FVLscore', home=entry[0],away=entry[1],deadline=entry[2],index=loop.index0) }}">Enter Score</a></td>
+                  <td><a href="{{ url_for('FVLscore', home=entry[0],away=entry[1],deadline=entry[2],index=entry[4]) }}">Enter Score</a></td>
                   {%else%}
                   <td><b>{{ entry[3] }}</b></td>
                   {% endif %}

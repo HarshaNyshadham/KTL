@@ -480,12 +480,12 @@ def FVLschedule():
       team=form.teamFilter_feild.data
       for index,row in df.iterrows():
         if(row['Home']==team or row['Away']==team):
-          data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
+          data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score'],row['Index']])
       return render_template("FVLschedule.html",data=data,form=form)
 
   for index,row in df.iterrows():
     print(row['Home'],row['Away'],row['Deadline'],row['Score'])
-    data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score']])
+    data.append([row['Home'],row['Away'],row['Deadline'].date(),row['Score'],row['Index']])
   #data=[['a','b','11-9-10','10-15']]
   return render_template("FVLschedule.html",data=data,form=form)
 

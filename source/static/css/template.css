@@ -14,7 +14,7 @@ html
 
 
 body {
-  background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/static/img/usopen_back.jpg');
+  background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('/static/img/usopen_back.jpg');
   width:100%;
 
   background-size:100%;

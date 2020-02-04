@@ -462,7 +462,7 @@ def about():
 
 @app.route('/playoffs')
 def playoffs():
-  return render_template("playoffs.html")
+  return render_template("playoffnew.html")
 
 @app.route('/FVLindex')
 def FVLindex():

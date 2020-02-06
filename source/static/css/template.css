@@ -24,7 +24,7 @@ body {
 .FVLbody {
   background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/static/img/beachvolly.jpg');
   width:100%;
-
+  font-size:13px;
   background-size:100%;
 
 }

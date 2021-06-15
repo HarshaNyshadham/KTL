@@ -28,6 +28,7 @@ TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders"
 @app.route('/')
 @app.route('/index')
 def index():
+  print(current_user)
   if current_user.is_authenticated:
     return render_template("home.html",data=current_user,tabledata=score.query.filter((or_(score.player_id1==current_user.firstName,
                                                                                           score.player_id2==current_user.firstName))).order_by(score.deadline).all(),PTdata=pointTable.query.filter_by(player_id=current_user.firstName).first())
@@ -55,7 +56,6 @@ def login():
         if(userLogged.firstName in FVL_PlayedId):
           return redirect(url_for('FVLindex'))
         else:
-          print('test')
           return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 

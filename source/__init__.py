@@ -17,7 +17,7 @@ admin=Admin(app)
 mail=Mail(app)
 csrf = CsrfProtect()
 csrf.init_app(app)
-# WTF_CSRF_CHECK_DEFAULT = False
+WTF_CSRF_CHECK_DEFAULT = False
 
 
 

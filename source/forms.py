@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import csrf,FlaskForm
 from flask_wtf.file import FileField,FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField,TextAreaField,IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,NumberRange
@@ -7,6 +7,7 @@ from config import Config
 from source import db
 import sys
 
+num_elements_to_generate = 500
 
 
 class LoginForm(FlaskForm):

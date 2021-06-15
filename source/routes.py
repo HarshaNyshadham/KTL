@@ -48,7 +48,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         userLogged = user.query.filter_by(username=form.username.data).first()
-        print(userLogged)
+        print('t'+userLogged)
         if userLogged is None or not userLogged.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))

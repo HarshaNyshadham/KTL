@@ -13,6 +13,7 @@
 
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
 
     <p> {{ form.playerFilter_feild.label }} {{ form.playerFilter_feild }} &nbsp OR &nbsp
         {{ form.deadlineFilter_feild.label }} {{ form.deadlineFilter_feild }}  &nbsp &nbsp

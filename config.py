@@ -15,6 +15,7 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     #SERVER_NAME='local.docker:8000'
     WTF_CSRF_TIME_LIMIT = None
+    WTF_CSRF_CHECK_DEFAULT = False
 
     MAIL_SERVER='smtp.gmail.com'
     MAIL_PORT = 465

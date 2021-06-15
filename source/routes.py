@@ -50,11 +50,12 @@ def login():
         if userLogged is None or not userLogged.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        print('test')
+
         login_user(userLogged, remember=form.remember_me.data)
         if(userLogged.firstName in FVL_PlayedId):
           return redirect(url_for('FVLindex'))
         else:
+          print('test')
           return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 

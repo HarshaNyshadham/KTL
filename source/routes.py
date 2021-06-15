@@ -54,7 +54,7 @@ def login():
             return redirect(url_for('login'))
 
         login_user(userLogged, remember=form.remember_me.data,force=True)
-        print(current_user.is_authenticated)
+
         if(userLogged.firstName in FVL_PlayedId):
           return redirect(url_for('FVLindex'))
         else:

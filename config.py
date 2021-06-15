@@ -9,8 +9,8 @@ class Config(object):
     databasename="katytennisleague$default",
 )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.urandom(32)
-    SECRET_KEY = os.environ.get('SECRET_KEY') # or 'iam-simple'
+
+    SECRET_KEY = os.environ.get(os.urandom(32)) # or 'iam-simple'
     SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     #SERVER_NAME='local.docker:8000'

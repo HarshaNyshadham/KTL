@@ -14,6 +14,7 @@ class Config(object):
     SQLALCHEMY_POOL_RECYCLE = 299
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     #SERVER_NAME='local.docker:8000'
+    WTF_CSRF_TIME_LIMIT = None
 
     MAIL_SERVER='smtp.gmail.com'
     MAIL_PORT = 465

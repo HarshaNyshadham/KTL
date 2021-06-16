@@ -121,7 +121,7 @@ def schedule():
 #     if not current_user.is_authenticated:
 #         flash('Please login to view data')
 #         return redirect(url_for('login'))
-
+    print(current_user)
     form=FilterForm()
     form.playerFilter_feild.choices=[('','')]+[(u[0],u[0]) for u in user.query.with_entities(user.firstName).all()]
 

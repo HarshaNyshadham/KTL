@@ -58,7 +58,10 @@ def login():
         if(userLogged.firstName in FVL_PlayedId):
           return redirect(url_for('FVLindex'))
         else:
-          return redirect(url_for('index'))
+          return render_template("home.html",data=current_user,tabledata=score.query.filter((or_(score.player_id1==current_user.firstName,
+                                                                                          score.player_id2==current_user.firstName))).order_by(score.deadline).all(),PTdata=pointTable.query.filter_by(player_id=current_user.firstName).first())
+
+          #return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
 

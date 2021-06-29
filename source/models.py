@@ -42,9 +42,9 @@ class user(UserMixin ,db.Model):
         """Return True if the user is authenticated."""
         return self.authenticated
 
-    def is_anonymous(self):
-        """False, as anonymous users aren't supported."""
-        return False
+#     def is_anonymous(self):
+#         """False, as anonymous users aren't supported."""
+#         return False
 
 
 

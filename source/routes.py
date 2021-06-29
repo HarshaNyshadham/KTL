@@ -53,7 +53,7 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
 
-        login_user(userLogged, remember=form.remember_me.data)
+        print(login_user(userLogged, remember=form.remember_me.data))
         print(current_user)
         if(userLogged.firstName in FVL_PlayedId):
           return redirect(url_for('FVLindex'))

@@ -50,7 +50,7 @@ class user(UserMixin ,db.Model):
 
 @login.user_loader
 def load_user(id):
-    return user.query.get(int(id))
+    return user.query.get(id)
 
 
 class score(db.Model):

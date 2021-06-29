@@ -17,6 +17,8 @@ class Config(object):
     WTF_CSRF_TIME_LIMIT = None
     WTF_CSRF_ENABLED = False
 #     WTF_CSRF_CHECK_DEFAULT = False
+#     SESSION_COOKIE_SAMESITE="None"
+#     SESSION_COOKIE_SECURE=True
 
     MAIL_SERVER='smtp.gmail.com'
     MAIL_PORT = 465

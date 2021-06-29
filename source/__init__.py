@@ -10,6 +10,8 @@ from flask_mail import Mail
 
 app = Flask(__name__,template_folder='templates')
 app.config.from_object(Config)
+app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+
 
 #migrate = Migrate(app, db)
 login = LoginManager(app)

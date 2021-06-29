@@ -10,9 +10,10 @@ from flask_mail import Mail
 
 app = Flask(__name__,template_folder='templates')
 app.config.from_object(Config)
-db = SQLAlchemy(app)
+
 #migrate = Migrate(app, db)
 login = LoginManager(app)
+db = SQLAlchemy(app)
 admin=Admin(app)
 mail=Mail(app)
 csrf = CsrfProtect()

@@ -19,12 +19,12 @@ EXCEL_PATH='/home/katytennisleague/mysite/KTL/source/uploads'
 SEASON_NAME=''
 #DOWNLOAD_PATH='downloads/'
 DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
-FVL_PlayedId=["Cross Creek Smashers","Gully Boyz","Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Sparks","Katy Whackers","Katy Whackers2","Wood Warriors","Katy Falcons","Katy Boyz2","Underdogs","Katy Bulls"]
+FVL_PlayedId=["Smashers",	"Gully Boyz",	"Katy Boyz"	,"Vizag Steelers","Katy Bulls","Legends","Whackers","Khiladiz","Defenders"]
 FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_Fall2021.xlsx'
 FVL_playerlist='/home/katytennisleague/mysite/KTL/uploads/FVL_playerlist.xlsx'
-FVL_PoolA=["Katy Boyz","Katy Defenders","Katy Dragons","Katy Legends","Katy Whackers","Wood Warriors","Katy Falcons"]
-FVL_PoolB=["Cross Creek Smashers","Gully Boyz","Katy Sparks","Katy Whackers2","Katy Boyz2","Underdogs","Katy Bulls"]
-TeamDict={"Cross Creek Smashers":0,"Gully Boyz":1,"Katy Boyz":2,"Katy Defenders":3,"Katy Dragons":4,"Katy Legends":5,"Katy Sparks":6,"Katy Whackers":7,"Katy Whackers2":8,"Wood Warriors":9,"Katy Falcons":10,"Katy Boyz2":11,"Underdogs":12,"Katy Bulls":13}
+FVL_PoolA=["Smashers",	"Gully Boyz",	"Katy Boyz"	,"Vizag Steelers","Katy Bulls","Legends","Whackers","Khiladiz","Defenders"]
+FVL_PoolB=[]
+TeamDict={"Smashers":0,	"Gully Boyz":1,	"Katy Boyz":2,"Vizag Steelers":3,"Katy Bulls":4,"Legends":5,"Whackers":6,"Khiladiz":7,"Defenders":8}
 @app.route('/')
 @app.route('/index')
 def index():

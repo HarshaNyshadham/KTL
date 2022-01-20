@@ -22,9 +22,9 @@ DOWNLOAD_PATH='/home/katytennisleague/mysite/KTL/source/downloads/'
 FVL_PlayedId=["Smashers",	"Gully Boyz",	"Katy Boyz"	,"Vizag Steelers","Katy Bulls","Legends","Whackers","Khiladiz","Defenders","Katy Boyz 2"]
 FVL_fileName='/home/katytennisleague/mysite/KTL/uploads/FVL_spring2022.xlsx'
 FVL_playerlist='/home/katytennisleague/mysite/KTL/uploads/FVL_playerlist.xlsx'
-FVL_PoolA=["Smashers",	"Gully Boyz",	"Katy Boyz"	,"Vizag Steelers","Katy Bulls","Legends","Whackers","Khiladiz","Defenders"]
+FVL_PoolA=["Smashers",	"Gully Boyz",	"Katy Boyz"	,"Vizag Steelers","Katy Bulls","Legends","Whackers","Khiladiz","Defenders","Katy Boyz 2"]
 FVL_PoolB=[]
-TeamDict={"Smashers":0,	"Gully Boyz":1,	"Katy Boyz":2,"Vizag Steelers":3,"Katy Bulls":4,"Legends":5,"Whackers":6,"Khiladiz":7,"Defenders":8}
+TeamDict={"Smashers":0,	"Gully Boyz":1,	"Katy Boyz":2,"Vizag Steelers":3,"Katy Bulls":4,"Legends":5,"Whackers":6,"Khiladiz":7,"Defenders":8,"Katy Boyz 2":9}
 @app.route('/')
 @app.route('/index')
 def index():

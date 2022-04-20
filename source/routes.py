@@ -720,7 +720,7 @@ def KTLDoubles():
   sch_df=pd.read_excel(doubles_filename,sheet_name ='Schedule',keep_default_na=False)
 
   for index,row in sch_df.iterrows():
-    sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline']])
+    sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline'].date()])
 
   return render_template("KTLDoubles.html",pt_data=pt_data,sch_data=sch_data,players=players,error=error,message=message)
 

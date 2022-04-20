@@ -704,4 +704,4 @@ def FVLscore():
 
 @app.route('/KTLDoubles')
 def KTLDoubles():
-  return render_template("FVLabout.html")
+  return render_template("KTLDoubles.html")

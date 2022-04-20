@@ -719,6 +719,14 @@ def KTLDoubles():
 
   sch_df=pd.read_excel(doubles_filename,sheet_name ='Schedule',keep_default_na=False)
 
+  if request.method == "POST":
+      select_value=request.form.get("comp_select")
+      for index,row in sch_df.iterrows():
+        if(select_value==row['Team1'] or select_value==row['Team2']):
+          sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline'].date()])
+      return render_template('KTLDoubles.html',pt_data=pt_data,sch_data=sch_data,players=players,error=error,message=message)
+
+
   for index,row in sch_df.iterrows():
     sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline'].date()])
 

@@ -723,3 +723,7 @@ def KTLDoubles():
     sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline']])
 
   return render_template("KTLDoubles.html",pt_data=pt_data,sch_data=sch_data,players=players,error=error,message=message)
+
+@app.route('/doublescore',methods=['GET', 'POST'])
+def doublesubmitscore():
+  return redirect(url_for('TplDoubles'))

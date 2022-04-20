@@ -14,7 +14,7 @@
 
 <div class="ScheduleDiv" style= "text-align: center;">
 <h4 class = 'text-center' style = "color:black;"> KTL Doubles </h4>
-<h5 class = 'text-center' style = "color:black;">
+<h5 class = 'text-center' style = "color:black;font-size: 16px;">
   Point Table
   <h6 class = 'text-center' style = "color:blue;font-size: 12px;">
     <b>Win-40, Loss-10, Bonus-10(loss but win a set), Forefeit-0</b>
@@ -65,11 +65,11 @@
 </div>
 
 <!-- ************ schedule ********* -->
-<h5 class = 'text-center' style = "color:black;">
+<h5 class = 'text-center' style = "color:black;font-size: 16px;">
   Schedule
 </h5>
 
-<div class="container mx-auto mb-3 text-center" style="width: 1000px; font-size: 18px;background-color: #EBEBEB;text-align: center;">
+<div class="container mx-auto mb-3 text-center" style="width: 1000px; font-size: 16px;background-color: #EBEBEB;text-align: center;">
 
 <form action="{{ url_for("KTLDoubles")}}" method="post">
 <select name="comp_select" class="selectpicker bg-light" data-live-search="true" aria-label="Default select example" style= "text-align: center;">
@@ -78,7 +78,7 @@
   <option value="{{p}}">{{p}}</option>
   {% endfor %}
 </select>
-<button type="submit">Submit</button>
+<button type="submit" class="btn btn-success btn-sm">Submit</button>
   </form>
   <br>
 

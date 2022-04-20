@@ -71,7 +71,7 @@
 
 <div class="container mx-auto mb-3 text-center" style="width: 1000px; font-size: 16px;background-color: #EBEBEB;text-align: center;">
 
-<form action="{{ url_for("KTLDoubles")}}" method="post">
+<form action="{{ url_for("KTLDoubles")}}" method="post" style="padding: 0;margin: 0;">
 <select name="comp_select" class="selectpicker bg-light" data-live-search="true" aria-label="Default select example" style= "text-align: center;">
   <option selected>Select Team</option>
   {% for p in players %}
@@ -81,7 +81,7 @@
 <button type="submit" class="btn btn-success btn-sm">Submit</button>
   </form>
   <form action="{{ url_for("KTLDoubles")}}">
-    <button type="submit" class="btn btn-secondary btn-sm">Clear</button>
+    <button type="submit" class="btn btn-info  btn-sm">Clear</button>
   </form>
   <br>
 

@@ -704,7 +704,7 @@ def FVLscore():
 
 @app.route('/KTLDoubles')
 def KTLDoubles():
-  doubles_filename='home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
+  doubles_filename='/home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
 
   pt_df=pd.read_excel(doubles_filename,sheet_name ='PointTable',keep_default_na=False)
   pt_df.sort_values(by=['Points','%games'],inplace =True,ascending=[False,False])

@@ -704,4 +704,22 @@ def FVLscore():
 
 @app.route('/KTLDoubles')
 def KTLDoubles():
-  return render_template("KTLDoubles.html")
+  doubles_filename='home/katytennisleague/mysite/KTL/source/uploads/KTL_Doubles.xlsx'
+
+  pt_df=pd.read_excel(doubles_filename, engine ='openpyxl',sheet_name ='PointTable',keep_default_na=False)
+  pt_df.sort_values(by=['Points','%games'],inplace =True,ascending=[False,False])
+  pt_data=[]
+  sch_data=[]
+  error=request.args.get('error')
+  message=request.args.get('message')
+  players=pt_df.iloc[:,0]
+
+  for index,row in pt_df.iterrows():
+    pt_data.append([row['Team'],row['Matches'],row['Won'],row['Loss'],row['Bonus'],row['Points'],row['GamesWon'],row['GamesTotal'],row['%games']])
+
+  sch_df=pd.read_excel(doubles_filename, engine ='openpyxl',sheet_name ='Schedule',keep_default_na=False)
+
+   for index,row in sch_df.iterrows():
+    sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline']])
+
+  return render_template("KTLDoubles.html",pt_data=pt_data,sch_data=sch_data,players=players,error=error,message=message)

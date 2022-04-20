@@ -16,7 +16,7 @@
 <h4 class = 'text-center' style = "color:black;"> KTL Doubles </h4>
 <h5 class = 'text-center' style = "color:black;">
   Point Table
-  <h6 class = 'text-center' style = "color:white;font-size: 12px;">
+  <h6 class = 'text-center' style = "color:blue;font-size: 12px;">
     <b>Win-40, Loss-10, Bonus-10(loss but win a set), Forefeit-0</b>
   </h6>
 </h5>
@@ -96,6 +96,7 @@
                <th>Team1<br> Set1 &nbsp Set2 &nbsp Set3</th>
                <th>Team2<br> Set1 &nbsp Set2 &nbsp Set3</th>
                <th>Score</th>
+               <th>Deadline</th>
 
 
             </tr>
@@ -173,6 +174,7 @@
                   {% else %}
                   <td><b>{{ entry[2] }}</b></td>
                   {% endif %}
+                   <td>{ entry[3] }}</td>
                </tr>
                       </form>
                     </div>

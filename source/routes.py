@@ -702,7 +702,7 @@ def FVLscore():
   return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
 
 
-@app.route('/KTLDoubles')
+@app.route('/KTLDoubles',methods=['GET', 'POST'])
 def KTLDoubles():
   doubles_filename='/home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
 

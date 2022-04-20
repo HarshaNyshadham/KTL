@@ -706,7 +706,7 @@ def FVLscore():
 def KTLDoubles():
   doubles_filename='home/katytennisleague/mysite/KTL/source/uploads/KTL_Doubles.xlsx'
 
-  pt_df=pd.read_excel(doubles_filename, engine ='openpyxl',sheet_name ='PointTable',keep_default_na=False)
+  pt_df=pd.read_excel(doubles_filename,sheet_name ='PointTable',keep_default_na=False)
   pt_df.sort_values(by=['Points','%games'],inplace =True,ascending=[False,False])
   pt_data=[]
   sch_data=[]
@@ -717,7 +717,7 @@ def KTLDoubles():
   for index,row in pt_df.iterrows():
     pt_data.append([row['Team'],row['Matches'],row['Won'],row['Loss'],row['Bonus'],row['Points'],row['GamesWon'],row['GamesTotal'],row['%games']])
 
-  sch_df=pd.read_excel(doubles_filename, engine ='openpyxl',sheet_name ='Schedule',keep_default_na=False)
+  sch_df=pd.read_excel(doubles_filename,sheet_name ='Schedule',keep_default_na=False)
 
   for index,row in sch_df.iterrows():
     sch_data.append([row['Team1'],row['Team2'],row['Score'],row['Deadline']])

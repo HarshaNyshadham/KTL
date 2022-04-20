@@ -700,3 +700,8 @@ def FVLscore():
 
 
   return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
+
+
+@app.route('/KTLDoubles')
+def KTLDoubles():
+  return render_template("FVLabout.html")

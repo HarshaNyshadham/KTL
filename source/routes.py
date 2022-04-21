@@ -755,22 +755,22 @@ def KTLDoubles():
 def doublesubmitscore():
   doubles_filename='/home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
   t1=request.args.get('team1')
-    t2=request.args.get('team2')
-    p1s1=int(request.form.get("p1set1"))
-    p1s2=int(request.form.get("p1set2"))
-    p1s3=int(request.form.get("p1set3"))
-    p2s1=int(request.form.get("p2set1"))
-    p2s2=int(request.form.get("p2set2"))
-    p2s3=int(request.form.get("p2set3"))
-    p1forefeit=bool(request.form.get("p1forefeit"))
-    p2forefeit=bool(request.form.get("p2forefeit"))
-    print(t1,t2)
-    error='test'
-    message='test'
+  t2=request.args.get('team2')
+  p1s1=int(request.form.get("p1set1"))
+  p1s2=int(request.form.get("p1set2"))
+  p1s3=int(request.form.get("p1set3"))
+  p2s1=int(request.form.get("p2set1"))
+  p2s2=int(request.form.get("p2set2"))
+  p2s3=int(request.form.get("p2set3"))
+  p1forefeit=bool(request.form.get("p1forefeit"))
+  p2forefeit=bool(request.form.get("p2forefeit"))
+  print(t1,t2)
+  error='test'
+  message='test'
 
-    if not (ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)):
-      error='Invalid Score!!!'
-      return redirect(url_for('KTLDoubles',error=error,message=message))
+  if not (ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)):
+    error='Invalid Score!!!'
+    return redirect(url_for('KTLDoubles',error=error,message=message))
 
 
   return redirect(url_for('KTLDoubles'))

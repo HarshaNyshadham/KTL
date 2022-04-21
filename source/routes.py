@@ -722,7 +722,7 @@ def ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit):
       return False
     return True
 
-def Schedule_writer(schedule_dataframe,filename):
+def Doubles_writer(schedule_dataframe,pointTable_dataframe,filename):
    #writer for schedule
 
  #delete the sheet if already exist
@@ -734,6 +734,7 @@ def Schedule_writer(schedule_dataframe,filename):
  #writer.to_excel(filename,sheet_name='Schedule')
  with pd.ExcelWriter(filename,mode='a') as wr:
                      schedule_dataframe.to_excel(wr,sheet_name='Schedule',index = False)
+                     pointTable_dataframe.to_excel(wr,sheet_name='PointTable',index = False)
  return True
 
 @app.route('/KTLDoubles',methods=['GET', 'POST'])
@@ -790,11 +791,13 @@ def doublesubmitscore():
 
 
   df_sch=pd.read_excel(doubles_filename,sheet_name ='Schedule',keep_default_na=False)
+  df_pt=pd.read_excel(doubles_filename,sheet_name ='PointTable',keep_default_na=False)
+
   score= str(p1s1)+'-'+str(p2s1)+','+str(p1s2)+'-'+str(p2s2)+','+str(p1s3)+'-'+str(p2s3)
 
   for index,row in df_sch.iterrows():
     if((row['Team1']==str(t1)) and  (row['Team2']==str(t2))):
       df_sch.at[index,'Score']= score
-      Schedule_writer(df_sch,doubles_filename)
+      Doubles_writer(df_sch,df_pt,doubles_filename)
 
   return redirect(url_for('KTLDoubles',error=error,message=message))

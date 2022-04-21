@@ -797,4 +797,4 @@ def doublesubmitscore():
       df_sch.at[index,'Score']= score
       Schedule_writer(df_sch,doubles_filename)
 
-  return redirect(url_for('KTLDoubles'),error=error,message=message)
+  return redirect(url_for('KTLDoubles',error=error,message=message))

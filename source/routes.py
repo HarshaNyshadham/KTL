@@ -706,6 +706,7 @@ def FVLscore():
 
 def ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit):
 
+    print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)
     if(p1forefeit or p2forefeit):
       return True
     if((int(p1s1)<6 and int(p2s1)<6) or (int(p1s2)<6 and int(p2s2)<6)):

@@ -778,6 +778,7 @@ def doublesubmitscore():
   p1forefeit=bool(request.form.get("p1forefeit"))
   p2forefeit=bool(request.form.get("p2forefeit"))
   print(t1,t2)
+  print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)
   error='test'
   message='test'
 

@@ -12,6 +12,7 @@ from sqlalchemy import and_,or_,desc
 from flask_mail import Message
 import pandas as pd
 from pandas import ExcelWriter,DataFrame,ExcelFile
+from __future__ import division
 import string
 
 #EXCEL_PATH='uploads/'

@@ -746,17 +746,17 @@ def calc_points(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3):
   winner=''
   bonusplayer=''
   if(p1s3 or p2s3):
-    bonus=10
+    bonus=1
 
   if((p1s1>p2s1 and p1s2>p2s2) or (p1s1>p2s1 and p1s3>p2s3) or (p1s2>p2s2 and p1s3>p2s3)):
-    p1points=40
-    p2points=10+bonus
+    p1points=4
+    p2points=1+bonus
     winner='p1'
     if(bonus):
       bonusplayer='p2'
   else:
-    p1points=10+bonus
-    p2points=40
+    p1points=1+bonus
+    p2points=4
     winner='p2'
     if(bonus):
       bonusplayer='p1'
@@ -791,9 +791,9 @@ def update_points_doubles(filename,p1,p1points,p2,p2points,winner,bonusplayer,ga
     df.at[p2index,'Won']=df.at[p2index,'Won']+1
   #bonus
   if(bonusplayer=='p1'):
-    df.at[p1index,'Bonus']=df.at[p1index,'Bonus']+10
+    df.at[p1index,'Bonus']=df.at[p1index,'Bonus']+1
   elif(bonusplayer=='p2'):
-    df.at[p2index,'Bonus']=df.at[p2index,'Bonus']+10
+    df.at[p2index,'Bonus']=df.at[p2index,'Bonus']+1
   #percentage games
   df.at[p1index,'GamesTotal']=df.at[p1index,'GamesTotal']+gamest1+gamest2
   df.at[p2index,'GamesTotal']=df.at[p2index,'GamesTotal']+gamest2+gamest1
@@ -873,12 +873,12 @@ def doublesubmitscore():
   if(p1forefeit or p2forefeit):
     if(p1forefeit):
       score='Forefeit by '+str(t1)
-      df_pt=update_points_doubles(doubles_filename,t1,0,t2,40,'p2',0,0,0)
+      df_pt=update_points_doubles(doubles_filename,t1,0,t2,4,'p2',0,0,0)
       message='Winner is '+str(t2)
     elif(p2forefeit):
       score='Forefeit by '+str(t2)
       message='Winner is '+str(t1)
-      df_pt=update_points_doubles(doubles_filename,t1,40,t2,0,'p1',0,0,0)
+      df_pt=update_points_doubles(doubles_filename,t1,4,t2,0,'p1',0,0,0)
     for index,row in df_sch.iterrows():
       if((row['Team1']==str(t1)) and  (row['Team2']==str(t2))):
         df_sch.at[index,'Score']= score

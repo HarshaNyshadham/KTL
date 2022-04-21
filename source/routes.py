@@ -800,13 +800,14 @@ def update_points_doubles(filename,p1,p1points,p2,p2points,winner,bonusplayer,ga
   df.at[p1index,'GamesWon']=df.at[p1index,'GamesWon']+gamest1
   print(gamest1,gamest2)
   if(gamest1>0):
+    print('y')
     df.at[p1index,'%games']=(df.at[p1index,'GamesWon']/df.at[p1index,'GamesTotal'])*100
 
   df.at[p2index,'GamesWon']=df.at[p2index,'GamesWon']+gamest2
   if(gamest2>0):
     df.at[p2index,'%games']=(df.at[p2index,'GamesWon']/df.at[p2index,'GamesTotal'])*100
 
-
+  print(df.at[p1index,'%games'],df.at[p2index,'%games'])
 
   return df
 

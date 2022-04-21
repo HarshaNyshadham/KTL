@@ -881,7 +881,7 @@ def doublesubmitscore():
       if((row['Team1']==str(t1)) and  (row['Team2']==str(t2))):
         df_sch.at[index,'Score']= score
         Doubles_writer(df_sch,df_pt,doubles_filename)
-    return redirect(url_for('TplDoubles',error=error,message=message))
+    return redirect(url_for('KTLDoubles',error=error,message=message))
 
 
 

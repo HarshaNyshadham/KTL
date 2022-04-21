@@ -701,6 +701,25 @@ def FVLscore():
 
   return render_template("FVLscoreForm.html",homeTeam=home,awayTeam=away,form=form)
 
+# ************************ DOUBLES *****************************
+
+
+def ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit):
+
+    if(p1forefeit or p2forefeit):
+      return True
+    if((int(p1s1)<6 and int(p2s1)<6) or (int(p1s2)<6 and int(p2s2)<6)):
+    #print(p1s1,p2s1)
+      return False
+    elif((int(p1s1)>int(p2s1)) and (int(p1s2)>int(p2s2)) and (int(p1s3)>0 or int(p2s3)>0)):
+      return False
+    elif((int(p1s1)<int(p2s1)) and (int(p1s2)<int(p2s2)) and (int(p1s3)>0 or int(p2s3)>0)):
+      return False
+    elif((int(p1s1)<int(p2s1)) and (int(p1s2)>int(p2s2)) and (int(p1s3)<6 and int(p2s3)<6)):
+      return False
+    elif((int(p1s1)>int(p2s1)) and (int(p1s2)<int(p2s2)) and (int(p1s3)<6 and int(p2s3)<6)):
+      return False
+
 
 @app.route('/KTLDoubles',methods=['GET', 'POST'])
 def KTLDoubles():
@@ -734,4 +753,24 @@ def KTLDoubles():
 
 @app.route('/doublescore',methods=['GET', 'POST'])
 def doublesubmitscore():
-  return redirect(url_for('TplDoubles'))
+  doubles_filename='/home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
+  t1=request.args.get('team1')
+    t2=request.args.get('team2')
+    p1s1=int(request.form.get("p1set1"))
+    p1s2=int(request.form.get("p1set2"))
+    p1s3=int(request.form.get("p1set3"))
+    p2s1=int(request.form.get("p2set1"))
+    p2s2=int(request.form.get("p2set2"))
+    p2s3=int(request.form.get("p2set3"))
+    p1forefeit=bool(request.form.get("p1forefeit"))
+    p2forefeit=bool(request.form.get("p2forefeit"))
+    print(t1,t2)
+    error='test'
+    message='test'
+
+    if not (ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)):
+      error='Invalid Score!!!'
+      return redirect(url_for('KTLDoubles',error=error,message=message))
+
+
+  return redirect(url_for('KTLDoubles'))

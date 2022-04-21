@@ -706,7 +706,7 @@ def FVLscore():
 
 def ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit):
 
-    print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)
+    #print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)
     if(p1forefeit or p2forefeit):
       return True
     if((int(p1s1)<6 and int(p2s1)<6) or (int(p1s2)<6 and int(p2s2)<6)):
@@ -720,6 +720,7 @@ def ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit):
       return False
     elif((int(p1s1)>int(p2s1)) and (int(p1s2)<int(p2s2)) and (int(p1s3)<6 and int(p2s3)<6)):
       return False
+    return True
 
 def Schedule_writer(schedule_dataframe,filename):
    #writer for schedule

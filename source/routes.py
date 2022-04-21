@@ -737,6 +737,79 @@ def Doubles_writer(schedule_dataframe,pointTable_dataframe,filename):
                      pointTable_dataframe.to_excel(wr,sheet_name='PointTable',index = False)
  return True
 
+
+def calc_points(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3):
+  p1points=0
+  p2points=0
+  bonus=0
+  winner=''
+  bonusplayer=''
+  if(p1s3 or p2s3):
+    bonus=10
+
+  if((p1s1>p2s1 and p1s2>p2s2) or (p1s1>p2s1 and p1s3>p2s3) or (p1s2>p2s2 and p1s3>p2s3)):
+    p1points=40
+    p2points=10+bonus
+    winner='p1'
+    if(bonus):
+      bonusplayer='p2'
+  else:
+    p1points=10+bonus
+    p2points=40
+    winner='p2'
+    if(bonus):
+      bonusplayer='p1'
+
+
+
+  return ([p1points,p2points,winner,bonusplayer])
+
+
+def update_points_doubles(filename,p1,p1points,p2,p2points,winner,bonusplayer,gamest1,gamest2):
+  df=pd.read_excel(filename,sheet_name ='PointTable',keep_default_na=False)
+  p1index=0
+  p2index=0
+  for index,row in df.iterrows():
+    if(row['Team']==str(p1)):
+      p1index=index
+    if(row['Team']==str(p2)):
+      p2index=index
+
+  #points
+  df.at[p1index,'Points']=df.at[p1index,'Points']+p1points
+  df.at[p2index,'Points']=df.at[p2index,'Points']+p2points
+  #matches
+  df.at[p1index,'Matches']=df.at[p1index,'Matches']+1
+  df.at[p2index,'Matches']=df.at[p2index,'Matches']+1
+  #win and loss
+  if(winner=='p1'):
+    df.at[p1index,'Won']=df.at[p1index,'Won']+1
+    df.at[p2index,'Loss']=df.at[p2index,'Loss']+1
+  elif(winner=='p2'):
+    df.at[p1index,'Loss']=df.at[p1index,'Loss']+1
+    df.at[p2index,'Won']=df.at[p2index,'Won']+1
+  #bonus
+  if(bonusplayer=='p1'):
+    df.at[p1index,'Bonus']=df.at[p1index,'Bonus']+10
+  elif(bonusplayer=='p2'):
+    df.at[p2index,'Bonus']=df.at[p2index,'Bonus']+10
+  #percentage games
+  df.at[p1index,'GamesTotal']=df.at[p1index,'GamesTotal']+gamest1+gamest2
+  df.at[p2index,'GamesTotal']=df.at[p2index,'GamesTotal']+gamest2+gamest1
+
+  df.at[p1index,'GamesWon']=df.at[p1index,'GamesWon']+gamest1
+  if(df.at[p1index,'GamesTotal']>0):
+    df.at[p1index,'%games']=(df.at[p1index,'GamesWon']/df.at[p1index,'GamesTotal'])*100
+
+  df.at[p2index,'GamesWon']=df.at[p2index,'GamesWon']+gamest2
+  if(df.at[p2index,'GamesTotal']>0):
+    df.at[p2index,'%games']=(df.at[p2index,'GamesWon']/df.at[p2index,'GamesTotal'])*100
+
+
+
+  return df
+
+
 @app.route('/KTLDoubles',methods=['GET', 'POST'])
 def KTLDoubles():
   doubles_filename='/home/katytennisleague/mysite/KTL/uploads/KTL_Doubles.xlsx'
@@ -782,8 +855,8 @@ def doublesubmitscore():
   p2forefeit=bool(request.form.get("p2forefeit"))
   print(t1,t2)
   print(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)
-  error='test'
-  message='test'
+  error=''
+  message=''
 
   if not (ScoreCheck(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3,p1forefeit,p2forefeit)):
     error='Invalid Score!!!'
@@ -794,6 +867,32 @@ def doublesubmitscore():
   df_pt=pd.read_excel(doubles_filename,sheet_name ='PointTable',keep_default_na=False)
 
   score= str(p1s1)+'-'+str(p2s1)+','+str(p1s2)+'-'+str(p2s2)+','+str(p1s3)+'-'+str(p2s3)
+
+  if(p1forefeit or p2forefeit):
+    if(p1forefeit):
+      score='Forefeit by '+str(t1)
+      df_pt=update_points_doubles(doubles_filename,t1,0,t2,40,'p2',0,0,0)
+      message='Winner is '+str(t2)
+    elif(p2forefeit):
+      score='Forefeit by '+str(t2)
+      message='Winner is '+str(t1)
+      df_pt=update_points_doubles(doubles_filename,t1,40,t2,0,'p1',0,0,0)
+    for index,row in df_sch.iterrows():
+      if((row['Team1']==str(t1)) and  (row['Team2']==str(t2))):
+        df_sch.at[index,'Score']= score
+        Doubles_writer(df_sch,df_pt,doubles_filename)
+    return redirect(url_for('TplDoubles',error=error,message=message))
+
+
+
+
+  [t1points,t2points,winner,bonusteam]=calc_points(p1s1,p1s2,p1s3,p2s1,p2s2,p2s3)
+  df_pt=update_points_doubles(doubles_filename,t1,t1points,t2,t2points,winner,bonusteam,(p1s1+p1s2+p1s3),(p2s1+p2s2+p2s3))
+  print(t1points,t2points,winner,bonusteam)
+  if(winner=='p1'):
+    message='Winner is '+str(t1)
+  elif(winner=='p2'):
+    message='Winner is '+str(t2)
 
   for index,row in df_sch.iterrows():
     if((row['Team1']==str(t1)) and  (row['Team2']==str(t2))):
